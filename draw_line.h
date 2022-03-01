@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:26:54 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/01 14:34:01 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/01 16:23:03 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,22 @@
 
 # include "mlx.h"
 # include "libft.h"
+# include <math.h>
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		ll;
+	int		endian;
+}			t_img;
 
 typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
+	t_img	*i;
 }			t_game;
 
 #endif
