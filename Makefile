@@ -4,7 +4,7 @@ FLAGS		= -Wall -Wextra -Werror
 INCL		= -I. -I./mlx -I./libft
 LIB			= -L./libft -lft -L./mlx -lmlx -framework OpenGL -framework AppKit
 
-SRCS		= draw_line.c
+SRCS		= draw_line2.c
 
 
 all :		$(NAME)
