@@ -6,13 +6,13 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 18:00:15 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/04 18:00:27 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/04 20:41:43 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	line_q1(t_game *a, t_2dpoint p1, t_2dpoint p2)
+void	line_q1(t_fdf *a, t_2dpoint p1, t_2dpoint p2)
 {
 	int	dx;
 	int	dy;
@@ -37,7 +37,7 @@ void	line_q1(t_game *a, t_2dpoint p1, t_2dpoint p2)
 	}
 }
 
-void	line_q2(t_game *a, t_2dpoint p1, t_2dpoint p2)
+void	line_q2(t_fdf *a, t_2dpoint p1, t_2dpoint p2)
 {
 	int	dx;
 	int	dy;
@@ -62,7 +62,7 @@ void	line_q2(t_game *a, t_2dpoint p1, t_2dpoint p2)
 	}
 }
 
-void	line_q3(t_game *a, t_2dpoint p1, t_2dpoint p2)
+void	line_q3(t_fdf *a, t_2dpoint p1, t_2dpoint p2)
 {
 	int	dx;
 	int	dy;
@@ -87,7 +87,7 @@ void	line_q3(t_game *a, t_2dpoint p1, t_2dpoint p2)
 	}
 }
 
-void	line_q4(t_game *a, t_2dpoint p1, t_2dpoint p2)
+void	line_q4(t_fdf *a, t_2dpoint p1, t_2dpoint p2)
 {
 	int	dx;
 	int	dy;

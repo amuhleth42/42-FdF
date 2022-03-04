@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:34:12 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/04 16:38:16 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/04 20:44:38 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,22 @@ char	**read_file(char *path)
 	}
 	close(fd);
 	return (map);
+}
+
+int	check_fdf_format(char *path)
+{
+	int	len;
+
+	len = ft_strlen(path);
+	if (fd_strncmp(path + len - 4, ".fdf", 4) != 0)
+		return (0);
+	else
+		return (1);
+}
+
+void	parser(char *path, t_fdf *a)
+{
+	char	**lines;
+
+	lines = read_file(path);
 }

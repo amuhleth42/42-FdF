@@ -6,13 +6,13 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:40:34 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/04 17:51:25 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/04 20:40:11 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	key_hook(int key, t_game *a)
+int	key_hook(int key, t_fdf *a)
 {
 	if (key == 53)
 	{
@@ -23,7 +23,7 @@ int	key_hook(int key, t_game *a)
 	return (0);
 }
 
-void	draw_line(t_game *a, int x, int y)
+void	draw_line(t_fdf *a, int x, int y)
 {
 	static int	i;
 	static t_2dpoint	p1;
@@ -44,7 +44,7 @@ void	draw_line(t_game *a, int x, int y)
 	}
 }
 
-int	mouse_hook(int button, int x, int y, t_game *a)
+int	mouse_hook(int button, int x, int y, t_fdf *a)
 {
 	if (button == 1)
 	{
@@ -56,7 +56,7 @@ int	mouse_hook(int button, int x, int y, t_game *a)
 
 int	main(void)
 {
-	t_game a;
+	t_fdf a;
 
 	a.mlx = mlx_init();
 	a.win = mlx_new_window(a.mlx, 1000, 1000, "Draw_line");
