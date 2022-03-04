@@ -4,7 +4,10 @@ FLAGS		= -Wall -Wextra -Werror
 INCL		= -I. -I./mlx -I./libft
 LIB			= -L./libft -lft -L./mlx -lmlx -framework OpenGL -framework AppKit
 
-SRCS		= draw_line2.c
+SRCS		= main.c		\
+			  utils.c		\
+			  bresenham.c	\
+			  bresenham2.c	\
 
 
 all :		$(NAME)

@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:10:17 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/01 19:12:54 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/04 16:27:30 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	line_q1(t_game *a, int x1, int y1, int x2, int y2)
 
 	dx = x2 - x1;
 	dy = y2 - y1;
-	p = 2 * dx - dy;
+	p = 2 * dy - dx;
 	i = 0;
 	while (x1 <= x2)
 	{
@@ -65,7 +65,7 @@ void	line_q2(t_game *a, int x1, int y1, int x2, int y2)
 
 	dx = x2 - x1;
 	dy = y2 - y1;
-	p = 2 * dy - dx;
+	p = 2 * dx - dy;
 	i = 0;
 	while (y1 <= y2)
 	{
@@ -90,7 +90,7 @@ void	line_q3(t_game *a, int x1, int y1, int x2, int y2)
 
 	dx = abs(x2 - x1);
 	dy = y2 - y1;
-	p = 2 * dy - dx;
+	p = 2 * dx - dy;
 	i = 0;
 	while (y1 <= y2)
 	{
@@ -115,7 +115,7 @@ void	line_q4(t_game *a, int x1, int y1, int x2, int y2)
 
 	dx = abs(x2 - x1);
 	dy = y2 - y1;
-	p = 2 * dx - dy;
+	p = 2 * dy - dx;
 	i = 0;
 	while (x1 >= x2)
 	{
