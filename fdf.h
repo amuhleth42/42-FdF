@@ -46,12 +46,20 @@ typedef struct s_img
 	int		endian;
 }			t_img;
 
+typedef struct s_map
+{
+	t_3d	*3d_map;
+	int		x;
+	int		y;
+	int		size;
+}			t_map;
+
 typedef struct s_fdf
 {
 	void	*mlx;
 	void	*win;
 	t_img	*i;
-	t_3d	*map;
+	t_map	map;
 }			t_fdf;
 
 char	**read_file(char *path);

@@ -49,7 +49,7 @@ int	check_fdf_format(char *path)
 
 void	parser(char *path, t_fdf *a)
 {
-	t_list	*map;
+	t_list	*map_lines;
 
-	map = read_file(path);
+	map_lines = read_file(path);
 }
