@@ -19,3 +19,9 @@ void	put_pixel_to_img(t_img *i, int x, int y, int color)
 	dst = i->addr + (y * i->ll + x * (i->bpp / 8));
 	*(unsigned int*)dst = color;
 }
+
+void	die(char *s)
+{
+	ft_putstr_fd(s, STDERR_FILENO);
+	exit(EXIT_FAILURE);
+}

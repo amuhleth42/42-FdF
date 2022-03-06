@@ -8,6 +8,7 @@ SRCS		= main.c		\
 			  utils.c		\
 			  bresenham.c	\
 			  bresenham2.c	\
+			  parsing.c		\
 
 
 all :		$(NAME)

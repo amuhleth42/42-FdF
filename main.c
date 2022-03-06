@@ -54,15 +54,23 @@ int	mouse_hook(int button, int x, int y, t_fdf *a)
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_fdf a;
 
+	(void) argv;
+	if (argc != 2)
+	{
+		ft_printf("Error\n");
+		return (1);
+	}
+	parser(argv[1], &a);
 	a.mlx = mlx_init();
 	a.win = mlx_new_window(a.mlx, 1000, 1000, "Draw_line");
 	a.i = ft_calloc(1, sizeof(t_img));
 	a.i->img = mlx_new_image(a.mlx, 1000, 1000);
 	a.i->addr = mlx_get_data_addr(a.i->img, &a.i->bpp, &a.i->ll, &a.i->endian);
+
 	mlx_key_hook(a.win, &key_hook, &a);
 	mlx_mouse_hook(a.win, &mouse_hook, &a);
 	mlx_loop(a.mlx);

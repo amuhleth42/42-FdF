@@ -48,7 +48,7 @@ typedef struct s_img
 
 typedef struct s_map
 {
-	t_3d	*3d_map;
+	t_3d	*map_3d;
 	int		x;
 	int		y;
 	int		size;
@@ -62,16 +62,18 @@ typedef struct s_fdf
 	t_map	map;
 }			t_fdf;
 
-char	**read_file(char *path);
+t_list	*read_file(char *path);
 int		check_fdf_format(char *path);
+void	parser(char *path, t_fdf *a);
 
 void	put_pixel_to_img(t_img *i, int x, int y, int color);
+void	die(char *s);
 
-void	bresenham(t_fdf *a, t_2dpoint p1, t_2dpoint p2);
+void	bresenham(t_fdf *a, t_2d p1, t_2d p2);
 
-void	line_q1(t_fdf *a, t_2dpoint p1, t_2dpoint p2);
-void	line_q2(t_fdf *a, t_2dpoint p1, t_2dpoint p2);
-void	line_q3(t_fdf *a, t_2dpoint p1, t_2dpoint p2);
-void	line_q4(t_fdf *a, t_2dpoint p1, t_2dpoint p2);
+void	line_q1(t_fdf *a, t_2d p1, t_2d p2);
+void	line_q2(t_fdf *a, t_2d p1, t_2d p2);
+void	line_q3(t_fdf *a, t_2d p1, t_2d p2);
+void	line_q4(t_fdf *a, t_2d p1, t_2d p2);
 
 #endif
