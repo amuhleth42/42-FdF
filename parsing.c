@@ -12,24 +12,25 @@
 
 #include "fdf.h"
 
-char	**read_file(char *path)
+t_list	*read_file(char *path)
 {
-	char	**map;
+	t_list	map;
+	char	*line;
 	int		i;
 	int		fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		die("open");
-	map = ft_calloc(MAX_LINE, sizeof(char *));
-	if (!map)
-		die("calloc");
 	i = 0;
-	map[i] = ft_strtrim(get_next_line(fd), "\n");
-	while (map[i] != NULL && i < MAX_LINE)
+	line = ft_strtrim(get_next_line(fd), "\n");
+	if (!line)
+		return (NULL);
+	map = ft_lstnew(line);
+	while (line)
 	{
-		i++;
-		map[i] = ft_strtrim(get_next_line(fd), "\n");
+		ft_lstadd_back(&map, ft_lstnew(line));
+		line = ft_strtrim(get_next_line(fd), "\n");
 	}
 	close(fd);
 	return (map);
@@ -48,7 +49,7 @@ int	check_fdf_format(char *path)
 
 void	parser(char *path, t_fdf *a)
 {
-	char	**lines;
+	t_list	*map;
 
-	lines = read_file(path);
+	map = read_file(path);
 }

@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	line_q1(t_fdf *a, t_2dpoint p1, t_2dpoint p2)
+void	line_q1(t_fdf *a, t_2d p1, t_2d p2)
 {
 	int	dx;
 	int	dy;
@@ -37,7 +37,7 @@ void	line_q1(t_fdf *a, t_2dpoint p1, t_2dpoint p2)
 	}
 }
 
-void	line_q2(t_fdf *a, t_2dpoint p1, t_2dpoint p2)
+void	line_q2(t_fdf *a, t_2d p1, t_2d p2)
 {
 	int	dx;
 	int	dy;
@@ -62,7 +62,7 @@ void	line_q2(t_fdf *a, t_2dpoint p1, t_2dpoint p2)
 	}
 }
 
-void	line_q3(t_fdf *a, t_2dpoint p1, t_2dpoint p2)
+void	line_q3(t_fdf *a, t_2d p1, t_2d p2)
 {
 	int	dx;
 	int	dy;
@@ -87,7 +87,7 @@ void	line_q3(t_fdf *a, t_2dpoint p1, t_2dpoint p2)
 	}
 }
 
-void	line_q4(t_fdf *a, t_2dpoint p1, t_2dpoint p2)
+void	line_q4(t_fdf *a, t_2d p1, t_2d p2)
 {
 	int	dx;
 	int	dy;

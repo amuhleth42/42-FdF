@@ -22,20 +22,20 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 
-typedef struct s_2dpoint
+typedef struct s_2d
 {
 	int	x;
 	int	y;
 	int	color;
-}		t_2dpoint;
+}		t_2d;
 
-typedef struct s_3dpoint
+typedef struct s_3d
 {
 	int	x;
 	int	y;
 	int	z;
 	int	color;
-}		t_3dpoint;
+}		t_3d;
 
 typedef struct s_img
 {
@@ -51,6 +51,7 @@ typedef struct s_fdf
 	void	*mlx;
 	void	*win;
 	t_img	*i;
+	t_3d	*map;
 }			t_fdf;
 
 char	**read_file(char *path);

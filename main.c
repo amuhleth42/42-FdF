@@ -26,8 +26,8 @@ int	key_hook(int key, t_fdf *a)
 void	draw_line(t_fdf *a, int x, int y)
 {
 	static int	i;
-	static t_2dpoint	p1;
-	t_2dpoint	p2;
+	static t_2d	p1;
+	t_2d		p2;
 
 	if (i == 0)
 	{

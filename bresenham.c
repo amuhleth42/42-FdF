@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	bresenham_end(t_fdf *a, t_2dpoint p1, t_2dpoint p2)
+void	bresenham_end(t_fdf *a, t_2d p1, t_2d p2)
 {
 	int	dx;
 	int	dy;
@@ -35,7 +35,7 @@ void	bresenham_end(t_fdf *a, t_2dpoint p1, t_2dpoint p2)
 	}
 }
 
-void	bresenham(t_fdf *a, t_2dpoint p1, t_2dpoint p2)
+void	bresenham(t_fdf *a, t_2d p1, t_2d p2)
 {
 	int	dx;
 	int	dy;
