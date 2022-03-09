@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:34:12 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/09 13:40:11 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/09 15:54:33 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list	*read_file(char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		die("open");
+		die("open failed.\n");
 	i = 0;
 	line = ft_strtrim(get_next_line(fd), "\n");
 	if (!line)
@@ -29,9 +29,7 @@ t_list	*read_file(char *path)
 	map = NULL;
 	while (line)
 	{
-		t_list *tmp;
-		tmp = ft_lstnew(line);
-		ft_lstadd_back(&map, tmp);
+		ft_lstadd_back(&map, ft_lstnew(line));
 		line = ft_strtrim(get_next_line(fd), "\n");
 	}
 	close(fd);
@@ -59,11 +57,73 @@ void	print_list(t_list *map)
 	}
 }
 
-void	parser(char *path, t_fdf *a)
+int	count_elem_in_line(char *s)
 {
-	t_list	*map_lines;
+	int	count;
+	int	i;
 
-	(void) a;
-	map_lines = read_file(path);
-	print_list(map_lines);
+	count = 0;
+	i = 0;
+	while (s[i])
+	{
+		while (s[i] == ' ')
+			i++;
+		while (s[i] != ' ' && s[i])
+			i++;
+		count++;
+	}
+	if (s[i - 1] == ' ')
+		count--;
+	return (count);
+}
+
+void	fill_3d_line(char *line, t_map *map, int *i)
+{
+	int	x;
+
+	x = 0;
+	while (line)
+	{
+		map->map_3d[*i].x = x;
+		map->map_3d[*i].y = *i / map->x;
+		map->map_3d[*i].z = ft_atoi(line);
+		map->map_3d[*i].color = 0xFFFFFFFF;
+		ft_printf("x : %d, y : %d, z = %d, i = %d\n", map->map_3d[*i].x,
+				map->map_3d[*i].y, map->map_3d[*i].z, *i);
+		*i += 1;
+		while (*line != ' ' && *line != '\0')
+			line++;
+		if (*line == '\0')
+			break ;
+		line++;
+		x++;
+	}
+}
+void	fill_3d_map(t_list *lines, t_map *map)
+{
+	int	i;
+	int	y;
+
+	i = 0;
+	y = 0;
+	while (lines)
+	{
+		fill_3d_line(lines->content, map, &i);
+		lines = lines->next;
+		y++;
+	}
+}
+
+void	parser(char *path, t_map *map)
+{
+	t_list	*lines;
+
+	lines = read_file(path);
+	print_list(lines);
+	map->x = count_elem_in_line(lines->content);
+	map->y = ft_lstsize(lines);
+	ft_printf("Y : %d\nX : %d\n", map->y, map->x);
+	map->size = map->x * map->y;
+	map->map_3d = ft_calloc(map->size + 1, sizeof(t_3d));
+	fill_3d_map(lines, map);
 }

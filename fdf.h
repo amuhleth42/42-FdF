@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:27:44 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/04 20:42:23 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/09 15:02:08 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_fdf
 
 t_list	*read_file(char *path);
 int		check_fdf_format(char *path);
-void	parser(char *path, t_fdf *a);
+void	parser(char *path, t_map *map);
 
 void	put_pixel_to_img(t_img *i, int x, int y, int color);
 void	die(char *s);
