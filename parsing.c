@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:34:12 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/04 20:44:38 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/09 13:40:11 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ t_list	*read_file(char *path)
 	line = ft_strtrim(get_next_line(fd), "\n");
 	if (!line)
 		return (NULL);
+	map = NULL;
 	while (line)
 	{
-		ft_lstadd_back(&map, ft_lstnew(line));
+		t_list *tmp;
+		tmp = ft_lstnew(line);
+		ft_lstadd_back(&map, tmp);
 		line = ft_strtrim(get_next_line(fd), "\n");
 	}
 	close(fd);
