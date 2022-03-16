@@ -18,9 +18,8 @@
 # include <math.h>
 # include <fcntl.h>
 
-# define MAX_LINE 1000
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 720
 
 typedef struct s_2d
 {
@@ -49,17 +48,26 @@ typedef struct s_img
 typedef struct s_map
 {
 	t_3d	*map_3d;
+	t_2d	*map_2d;
 	int		x;
 	int		y;
 	int		size;
 }			t_map;
 
+typedef struct s_cam
+{
+	double	m[2][3];
+	int	x_cam;
+	int	y_cam;
+}			t_cam;
+
 typedef struct s_fdf
 {
 	void	*mlx;
 	void	*win;
-	t_img	*i;
+	t_img	i;
 	t_map	map;
+	t_cam	cam;
 }			t_fdf;
 
 t_list	*read_file(char *path);

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdio.h>
 
 t_list	*read_file(char *path)
 {
@@ -84,11 +85,11 @@ void	fill_3d_line(char *line, t_map *map, int *i)
 	x = 0;
 	while (line)
 	{
-		map->map_3d[*i].x = x;
-		map->map_3d[*i].y = *i / map->x;
-		map->map_3d[*i].z = ft_atoi(line);
+		map->map_3d[*i].x = 10 * x;
+		map->map_3d[*i].y = 10 * (*i / map->x);
+		map->map_3d[*i].z = 1 * ft_atoi(line);
 		map->map_3d[*i].color = 0xFFFFFFFF;
-		ft_printf("x : %d, y : %d, z = %d, i = %d\n", map->map_3d[*i].x,
+		printf("x : %d, y : %d, z = %d, i = %d\n", map->map_3d[*i].x,
 				map->map_3d[*i].y, map->map_3d[*i].z, *i);
 		*i += 1;
 		while (*line != ' ' && *line != '\0')
@@ -122,7 +123,7 @@ void	parser(char *path, t_map *map)
 	print_list(lines);
 	map->x = count_elem_in_line(lines->content);
 	map->y = ft_lstsize(lines);
-	ft_printf("Y : %d\nX : %d\n", map->y, map->x);
+	printf("Y : %d\nX : %d\n", map->y, map->x);
 	map->size = map->x * map->y;
 	map->map_3d = ft_calloc(map->size + 1, sizeof(t_3d));
 	fill_3d_map(lines, map);
