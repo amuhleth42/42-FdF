@@ -94,9 +94,10 @@ void	fill_3d_line(char *line, t_map *map, int *i)
 		*i += 1;
 		while (*line != ' ' && *line != '\0')
 			line++;
+		while (*line == ' ')
+			line++;
 		if (*line == '\0')
 			break ;
-		line++;
 		x++;
 	}
 }

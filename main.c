@@ -94,12 +94,12 @@ void	draw_map(t_fdf *a, t_2d *map)
 	while (j < a->map.y)
 	{
 		i = 0;
-		if (j < a->map.y - 1)
+		if (j + 1 < a->map.y)
 			bresenham(a, map[j * a->map.x + i], map[(j + 1) * a->map.x + i]);
 		while (++i < a->map.x)
 		{
 			bresenham(a, map[j * a->map.x + i - 1], map[j * a->map.x + i]);
-			if (j < a->map.y - 1)
+			if (j + 1 < a->map.y)
 				bresenham(a, map[j * a->map.x + i], map[(j + 1) * a->map.x + i]);
 		}
 		j++;
