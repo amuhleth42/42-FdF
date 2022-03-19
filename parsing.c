@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:34:12 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/09 15:54:33 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/19 17:41:34 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ int	check_fdf_format(char *path)
 
 void	print_list(t_list *map)
 {
-	ft_printf("%s\n", map->content);
+	printf("%s\n", map->content);
 	while (map->next)
 	{
 		map = map->next;
-		ft_printf("%s\n", map->content);
+		printf("%s\n", map->content);
 	}
 }
 

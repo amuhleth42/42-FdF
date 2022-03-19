@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:40:34 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/09 14:49:40 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/19 17:32:35 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	rendering(t_fdf *a)
 	int	i;
 
 	i = 0;
-	a->map.map_2d = ft_calloc(a->map.size, sizeof(t_2d));
+	a->map.map_2d = ft_calloc(a->map.size + 1, sizeof(t_2d));
 	while (i < a->map.size)
 	{
 		render_point(a->cam, &a->map.map_3d[i], &a->map.map_2d[i]);
@@ -104,6 +104,7 @@ void	draw_map(t_fdf *a, t_2d *map)
 		}
 		j++;
 	}
+	mlx_put_image_to_window(a->mlx, a->win, a->i.img, 0, 0);
 }
 
 int	main(int argc, char **argv)
@@ -134,6 +135,6 @@ int	main(int argc, char **argv)
 	print_map2d(a.map.map_2d, a.map.size);
 	draw_map(&a, a.map.map_2d);
 	mlx_key_hook(a.win, &key_hook, &a);
-	mlx_mouse_hook(a.win, &mouse_hook, &a);
+	//mlx_mouse_hook(a.win, &mouse_hook, &a);
 	mlx_loop(a.mlx);
 }
