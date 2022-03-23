@@ -23,17 +23,24 @@ void	perspective_divide(t_3d *p)
 {
 	if (p->z)
 	{
-		p->x = p->x / p->z;
-		p->y = p->y / p->z;
+		p->x = p->x * WIN_WIDTH / 2 / (p->z + WIN_WIDTH / 2);
+		p->y = p->y * WIN_HEIGHT / 2 / (p->z + WIN_HEIGHT / 2);
 	}
 }
 
 
 void	point_in_view(t_cam cam, t_3d *p, t_3d *p_2d)
 {
-	p_2d->x = cam.scale * (cam.view[0][0] * p->x + cam.view[0][1] * p->y + cam.view[0][2] * p->z + cam.view[0][3]);
-	p_2d->y = cam.scale * (cam.view[1][0] * p->x + cam.view[1][1] * p->y + cam.view[1][2] * p->z + cam.view[1][3]);
-	p_2d->z = cam.scale * (cam.view[2][0] * p->x + cam.view[2][1] * p->y + cam.view[2][2] * p->z + cam.view[2][3]);
+	p_2d->x = 1 * (cam.view[0][0] * p->x + cam.view[0][1] * p->y + cam.view[0][2] * p->z + cam.view[0][3]);
+	p_2d->y = 1 * (cam.view[1][0] * p->x + cam.view[1][1] * p->y + cam.view[1][2] * p->z + cam.view[1][3]);
+	p_2d->z = 1 * (cam.view[2][0] * p->x + cam.view[2][1] * p->y + cam.view[2][2] * p->z + cam.view[2][3]);
+}
+
+void	zoom(t_fdf *a, t_3d *p_2d)
+{
+	p_2d->x *= a->cam.scale;
+	p_2d->y *= a->cam.scale;
+	p_2d->z *= a->cam.scale;
 }
 
 t_3dv	normalize(t_3dv v)
@@ -70,32 +77,43 @@ t_3dv	cross_product(t_3dv a, t_3dv b)
 	return (res);
 }
 
-void	look_at(t_fdf *a)
+void	fourth_row(t_fdf *a, t_3dv *pos)
 {
-	t_3dv	forward;
-	t_3dv	right;
-	t_3dv	up;
-	t_3dv	tmp;
+	double	*s;
+	double	*u;
+	double	*f;
 
-	tmp.x = 0;
-	tmp.y = 1;
-	tmp.z = 0;
-	forward = normalize(a->cam.pos);
-	right = cross_product(tmp, forward);
-	up = cross_product(forward, right);
-	a->cam.view[0][0] = right.x;
-	a->cam.view[0][1] = right.y;
-	a->cam.view[0][2] = right.z;
-	a->cam.view[1][0] = up.x;
-	a->cam.view[1][1] = up.y;
-	a->cam.view[1][2] = up.z;
-	a->cam.view[2][0] = forward.x;
-	a->cam.view[2][1] = forward.y;
-	a->cam.view[2][2] = forward.z;
-	a->cam.view[3][0] = -a->cam.pos.x;
-	a->cam.view[3][1] = -a->cam.pos.y;
-	a->cam.view[3][2] = -a->cam.pos.z;
-	
+	s = a->cam.view[0];
+	u = a->cam.view[1];
+	f = a->cam.view[2];
+	a->cam.view[3][0] = -pos->x * s[0] - pos->y * s[1] - pos->z * s[2];
+	a->cam.view[3][1] = -pos->x * u[0] - pos->y * u[1] - pos->z * u[2];
+	a->cam.view[3][2] = -pos->x * f[0] - pos->y * f[1] - pos->z * f[2];
+}
+
+void	world_to_view(t_fdf *a)
+{
+	t_3dv	f;
+	t_3dv	s;
+	t_3dv	up;
+	t_3dv	u;
+
+	up.x = 0;
+	up.y = 0;
+	up.z = -1;
+	f = normalize(a->cam.pos);
+	s = cross_product(f, normalize(up));
+	u = cross_product(s, f);
+	a->cam.view[0][0] = -s.x;
+	a->cam.view[0][1] = -s.y;
+	a->cam.view[0][2] = -s.z;
+	a->cam.view[1][0] = u.x;
+	a->cam.view[1][1] = u.y;
+	a->cam.view[1][2] = u.z;
+	a->cam.view[2][0] = -f.x;
+	a->cam.view[2][1] = -f.y;
+	a->cam.view[2][2] = -f.z;
+	fourth_row(a, &a->cam.pos);
 }
 
 void	offset_point(t_3d *p)
@@ -116,6 +134,7 @@ void	render(t_fdf *a)
 		point_in_view(a->cam, &a->map.map_3d[i], &a->map.map_2d[i]);
 		if (a->cam.pinhole)
 			perspective_divide(&a->map.map_2d[i]);
+		zoom(a, &a->map.map_2d[i]);
 		offset_point(&a->map.map_2d[i]);
 		i++;
 	}
@@ -165,10 +184,10 @@ int	main(int argc, char **argv)
 	a.cam.pinhole = 0;
 	a.cam.x_cam = WIN_WIDTH / 2;
 	a.cam.y_cam = WIN_HEIGHT / 2;
-	a.cam.pos.x = 200;
-	a.cam.pos.y = 200;
-	a.cam.pos.z = 200;
-	look_at(&a);
+	a.cam.pos.x = 2 * a.map.x;
+	a.cam.pos.y = 2 * a.map.x;
+	a.cam.pos.z = 20;
+	world_to_view(&a);
 	render(&a);
 	print_map2d(a.map.map_2d, a.map.size);
 	//draw_map(&a, a.map.map_2d);

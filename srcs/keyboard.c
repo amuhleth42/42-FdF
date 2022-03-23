@@ -27,5 +27,6 @@ int	key_hook(int key, t_fdf *a)
 		else
 			a->cam.pinhole = 0;
 	}
+	render(a);
 	return (0);
 }

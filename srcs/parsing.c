@@ -50,11 +50,11 @@ int	check_fdf_format(char *path)
 
 void	print_list(t_list *map)
 {
-	printf("%s\n", map->content);
+	printf("%s\n", (char *)map->content);
 	while (map->next)
 	{
 		map = map->next;
-		printf("%s\n", map->content);
+		printf("%s\n", (char *)map->content);
 	}
 }
 
