@@ -19,7 +19,7 @@
 	p_2d->z = cam.scale * (cam.m[2][0] * p->x + cam.m[2][1] * p->y + cam.m[2][2] * p->z);
 }*/
 
-void	perspective_divide(t_3d *p)
+void	perspective_divide(t_3dv *p)
 {
 	if (p->z)
 	{
@@ -29,18 +29,18 @@ void	perspective_divide(t_3d *p)
 }
 
 
-void	point_in_view(t_cam cam, t_3d *p, t_3d *p_2d)
+void	point_in_view(t_cam cam, t_3d *p, t_3dv *render)
 {
-	p_2d->x = 1 * (cam.view[0][0] * p->x + cam.view[0][1] * p->y + cam.view[0][2] * p->z + cam.view[0][3]);
-	p_2d->y = 1 * (cam.view[1][0] * p->x + cam.view[1][1] * p->y + cam.view[1][2] * p->z + cam.view[1][3]);
-	p_2d->z = 1 * (cam.view[2][0] * p->x + cam.view[2][1] * p->y + cam.view[2][2] * p->z + cam.view[2][3]);
+	render->x = 1 * (cam.view[0][0] * p->x + cam.view[0][1] * p->y + cam.view[0][2] * p->z + cam.view[0][3]);
+	render->y = 1 * (cam.view[1][0] * p->x + cam.view[1][1] * p->y + cam.view[1][2] * p->z + cam.view[1][3]);
+	render->z = 1 * (cam.view[2][0] * p->x + cam.view[2][1] * p->y + cam.view[2][2] * p->z + cam.view[2][3]);
 }
 
-void	zoom(t_fdf *a, t_3d *p_2d)
+void	zoom(t_fdf *a, t_3dv *p)
 {
-	p_2d->x *= a->cam.scale;
-	p_2d->y *= a->cam.scale;
-	p_2d->z *= a->cam.scale;
+	p->x *= a->cam.scale;
+	p->y *= a->cam.scale;
+	p->z *= a->cam.scale;
 }
 
 t_3dv	normalize(t_3dv v)
@@ -116,10 +116,10 @@ void	world_to_view(t_fdf *a)
 	fourth_row(a, &a->cam.pos);
 }
 
-void	offset_point(t_3d *p)
+void	offset_point(t_3dv *p, t_3d *p_2d)
 {
-	p->x += WIN_WIDTH / 2;
-	p->y += WIN_HEIGHT / 2;
+	p_2d->x = floor(p->x) + WIN_WIDTH / 2;
+	p_2d->y = floor(p->y) + WIN_HEIGHT / 2;
 }
 
 void	render(t_fdf *a)
@@ -131,11 +131,11 @@ void	render(t_fdf *a)
 	a->map.map_2d = ft_calloc(a->map.size + 1, sizeof(t_3d));
 	while (i < a->map.size)
 	{
-		point_in_view(a->cam, &a->map.map_3d[i], &a->map.map_2d[i]);
+		point_in_view(a->cam, &a->map.world[i], &a->map.render[i]);
 		if (a->cam.pinhole)
-			perspective_divide(&a->map.map_2d[i]);
-		zoom(a, &a->map.map_2d[i]);
-		offset_point(&a->map.map_2d[i]);
+			perspective_divide(&a->map.render[i]);
+		zoom(a, &a->map.render[i]);
+		offset_point(&a->map.render[i], &a->map.map_2d[i]);
 		i++;
 	}
 	draw_map(a, a->map.map_2d);

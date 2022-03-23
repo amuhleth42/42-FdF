@@ -85,12 +85,10 @@ void	fill_3d_line(char *line, t_map *map, int *i)
 	x = 0;
 	while (line)
 	{
-		map->map_3d[*i].x = 10 * x;
-		map->map_3d[*i].y = 10 * (*i / map->x);
-		map->map_3d[*i].z = 1 * ft_atoi(line);
-		map->map_3d[*i].color = 0xFFFFFFFF;
-		printf("x : %d, y : %d, z = %d, i = %d\n", map->map_3d[*i].x,
-			map->map_3d[*i].y, map->map_3d[*i].z, *i);
+		map->world[*i].x = 10 * x;
+		map->world[*i].y = 10 * (*i / map->x);
+		map->world[*i].z = 1 * ft_atoi(line);
+		map->world[*i].color = 0xFFFFFFFF;
 		*i += 1;
 		while (*line != ' ' && *line != '\0')
 			line++;
@@ -127,6 +125,7 @@ void	parser(char *path, t_map *map)
 	map->y = ft_lstsize(lines);
 	printf("Y : %d\nX : %d\n", map->y, map->x);
 	map->size = map->x * map->y;
-	map->map_3d = ft_calloc(map->size + 1, sizeof(t_3d));
+	map->world = ft_calloc(map->size + 1, sizeof(t_3d));
+	map->render = ft_calloc(map->size + 1, sizeof(t_3dv));
 	fill_3d_map(lines, map);
 }

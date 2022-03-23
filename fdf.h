@@ -64,7 +64,8 @@ typedef struct s_img
 
 typedef struct s_map
 {
-	t_3d	*map_3d;
+	t_3d	*world;
+	t_3dv	*render;
 	t_3d	*map_2d;
 	int		x;
 	int		y;
