@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 18:00:44 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/04 20:41:07 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/23 13:49:41 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	bresenham_end(t_fdf *a, t_2d p1, t_2d p2)
 
 	dx = p2.x - p1.x;
 	dy = p2.y - p1.y;
-	if (dy > 0) //q3, q4
+	if (dy > 0)
 	{
 		if (-dx < dy)
 			line_q3(a, p1, p2);
 		else
 			line_q4(a, p1, p2);
 	}
-	else //q5, q6
+	else
 	{
 		if (dx < dy)
 			line_q1(a, p2, p1);
@@ -44,14 +44,14 @@ void	bresenham(t_fdf *a, t_2d p1, t_2d p2)
 	dy = p2.y - p1.y;
 	if (dx > 0)
 	{
-		if (dy > 0) //q1, q2
+		if (dy > 0)
 		{
 			if (dx > dy)
 				line_q1(a, p1, p2);
 			else
 				line_q2(a, p1, p2);
 		}
-		else //q7, q8
+		else
 		{
 			if (dx < -dy)
 				line_q3(a, p2, p1);

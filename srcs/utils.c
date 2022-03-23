@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:14:33 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/19 17:39:22 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/23 13:50:49 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	put_pixel_to_img(t_img *i, int x, int y, int color)
 	if (0 <= x && x < WIN_WIDTH && 0 <= y && y < WIN_HEIGHT)
 	{
 		dst = i->addr + (y * i->ll + x * (i->bpp / 8));
-		*(unsigned int*)dst = color;
+		*(unsigned int *)dst = color;
 	}
 }
 
 void	die(char *s)
 {
-	ft_putstr_fd(s, STDERR_FILENO);
+	ft_putendl_fd(s, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }

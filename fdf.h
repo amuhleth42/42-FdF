@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:27:44 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/09 15:02:08 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:26:36 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
+
+# define SCROLL_UP 4
+# define SCROLL_DOWN 5
+
+enum
+{
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6
+};
 
 typedef struct s_2d
 {
@@ -59,7 +69,17 @@ typedef struct s_cam
 	double	m[2][3];
 	int	x_cam;
 	int	y_cam;
+	double	scale;
 }			t_cam;
+
+typedef struct s_mouse
+{
+	int	is_down;
+	int	x;
+	int	y;
+	int	lastx;
+	int	lasty;
+}		t_mouse;
 
 typedef struct s_fdf
 {
@@ -68,6 +88,7 @@ typedef struct s_fdf
 	t_img	i;
 	t_map	map;
 	t_cam	cam;
+	t_mouse	mouse;
 }			t_fdf;
 
 t_list	*read_file(char *path);
@@ -83,5 +104,16 @@ void	line_q1(t_fdf *a, t_2d p1, t_2d p2);
 void	line_q2(t_fdf *a, t_2d p1, t_2d p2);
 void	line_q3(t_fdf *a, t_2d p1, t_2d p2);
 void	line_q4(t_fdf *a, t_2d p1, t_2d p2);
+
+int		key_hook(int key, t_fdf *a);
+int		mouse_down(int button, int x, int y, t_fdf *a);
+int		mouse_up(int button, int x, int y, t_fdf *a);
+int		mouse_move(int x, int y, t_fdf *a);
+
+void	draw_map(t_fdf *a, t_2d *map);
+
+void	clear_img(t_img *i);
+
+void	render(t_fdf *a);
 
 #endif
