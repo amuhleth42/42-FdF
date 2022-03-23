@@ -6,13 +6,13 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:37:30 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/23 13:37:56 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:48:17 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	draw_map(t_fdf *a, t_2d *map)
+void	draw_map(t_fdf *a, t_3d *map)
 {
 	int	i;
 	int	j;

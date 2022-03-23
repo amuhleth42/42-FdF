@@ -6,13 +6,13 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 18:00:44 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/23 13:49:41 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:49:45 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	bresenham_end(t_fdf *a, t_2d p1, t_2d p2)
+void	bresenham_end(t_fdf *a, t_3d p1, t_3d p2)
 {
 	int	dx;
 	int	dy;
@@ -35,7 +35,7 @@ void	bresenham_end(t_fdf *a, t_2d p1, t_2d p2)
 	}
 }
 
-void	bresenham(t_fdf *a, t_2d p1, t_2d p2)
+void	bresenham(t_fdf *a, t_3d p1, t_3d p2)
 {
 	int	dx;
 	int	dy;
