@@ -81,6 +81,7 @@ typedef struct s_cam
 	int		offset_y;
 	t_3dv	pos;
 	double	scale;
+	double	altitude;
 	int	pinhole;
 }			t_cam;
 

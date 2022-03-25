@@ -41,6 +41,10 @@ int	key_down(int key, t_fdf *a)
 		a->cam.offset_x += 20;
 	if (key == 2)
 		a->cam.offset_x -= 20;
+	if (key == 125)
+		a->cam.altitude *= 1.0 - 0.1;
+	if (key == 126)
+		a->cam.altitude *= 1.0 + 0.1;
 	render(a);
 	return (0);
 }

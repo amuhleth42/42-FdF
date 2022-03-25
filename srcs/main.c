@@ -31,9 +31,9 @@ void	perspective_divide(t_3dv *p)
 
 void	point_in_view(t_cam cam, t_3d *p, t_3dv *render)
 {
-	render->x = cam.view[0][0] * p->x + cam.view[0][1] * p->y + cam.view[0][2] * p->z + cam.view[0][3];
-	render->y = cam.view[1][0] * p->x +	cam.view[1][1] * p->y + cam.view[1][2] * p->z + cam.view[1][3];
-	render->z = cam.view[2][0] * p->x + cam.view[2][1] * p->y + cam.view[2][2] * p->z + cam.view[2][3];
+	render->x = cam.view[0][0] * p->x + cam.view[0][1] * p->y + cam.view[0][2] * p->z * cam.altitude + cam.view[0][3];
+	render->y = cam.view[1][0] * p->x +	cam.view[1][1] * p->y + cam.view[1][2] * p->z * cam.altitude + cam.view[1][3];
+	render->z = cam.view[2][0] * p->x + cam.view[2][1] * p->y + cam.view[2][2] * p->z * cam.altitude + cam.view[2][3];
 }
 
 void	zoom(t_fdf *a, t_3dv *p)
@@ -119,6 +119,7 @@ int	main(int argc, char **argv)
 	a.cam.m[2][1] = -sqrt(2);
 	a.cam.m[2][2] = sqrt(2);
 	a.cam.scale = 3.0;
+	a.cam.altitude = 1.0;
 	a.cam.pinhole = 0;
 	a.cam.offset_x = WIN_WIDTH / 2;
 	a.cam.offset_y = WIN_HEIGHT / 3;
