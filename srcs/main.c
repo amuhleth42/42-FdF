@@ -114,6 +114,10 @@ int	main(int argc, char **argv)
 	a.cam.pos.x = 10 * a.map.x;
 	a.cam.pos.y = 10 * a.map.x;
 	a.cam.pos.z = 4 * a.map.x;
+	a.mouse.left_down = 0;
+	a.mouse.right_down = 0;
+	a.mouse.x = 0;
+	a.mouse.y = 0;
 	world_to_view(&a);
 	render(&a);
 	//print_map2d(a.map.map_2d, a.map.size);
@@ -122,6 +126,6 @@ int	main(int argc, char **argv)
 	mlx_hook(a.win, ON_MOUSEDOWN, 0, &mouse_down, &a);
 	mlx_hook(a.win, ON_MOUSEUP, 0, &mouse_up, &a);
 	mlx_hook(a.win, ON_KEYDOWN, 0, &key_down, &a);
-	//mlx_hook(a.win, ON_MOUSEMOVE, 0, &mouse_move, &a);
+	mlx_hook(a.win, ON_MOUSEMOVE, 0, &mouse_move, &a);
 	mlx_loop(a.mlx);
 }

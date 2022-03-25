@@ -86,7 +86,8 @@ typedef struct s_cam
 
 typedef struct s_mouse
 {
-	int	is_down;
+	int	left_down;
+	int	right_down;
 	int	x;
 	int	y;
 	int	lastx;

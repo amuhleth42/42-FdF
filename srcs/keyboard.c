@@ -12,18 +12,6 @@
 
 #include "fdf.h"
 
-/*void	move(int key, t_fdf *a)
-{
-	if (key == 13)
-		a->cam.offset_y -= 10;
-	if (key == 1)
-		a->cam.offset_y += 10;
-	if (key == 0)
-		a->cam.offset_x -= 10;
-	if (key == 2)
-		a->cam.offset_x += 10;
-}*/
-
 int	key_hook(int key, t_fdf *a)
 {
 	ft_printf("%d\n", key);
