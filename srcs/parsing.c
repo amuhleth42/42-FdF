@@ -78,24 +78,21 @@ int	count_elem_in_line(char *s)
 
 void	fill_3d_line(char *line, t_map *map, int *i)
 {
-	int	x;
+	int		x;
+	char	**points;
 
 	x = 0;
-	while (line)
+	points = ft_split(line, ' ');
+	while (x < map->x)
 	{
 		map->world[*i].x = 10 * x;
 		map->world[*i].y = 10 * (*i / map->x);
-		map->world[*i].z = 1 * ft_atoi(line);
+		map->world[*i].z = 1 * ft_atoi(points[x]);
 		map->world[*i].color = 0xFFFFFFFF;
 		*i += 1;
-		while (*line != ' ' && *line != '\0')
-			line++;
-		while (*line == ' ')
-			line++;
-		if (*line == '\0')
-			break ;
 		x++;
 	}
+	free(points);
 }
 
 void	fill_3d_map(t_list *lines, t_map *map)

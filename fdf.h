@@ -125,6 +125,7 @@ int		mouse_up(int button, int x, int y, t_fdf *a);
 int		mouse_move(int x, int y, t_fdf *a);
 
 void	draw_map(t_fdf *a, t_2d *map);
+void	draw_map_world(t_fdf *a, t_2d *map);
 
 void	clear_img(t_img *i);
 

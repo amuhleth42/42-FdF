@@ -63,7 +63,10 @@ void	render(t_fdf *a)
 		offset_point(&a->map.render[i], &a->map.map_2d[i], a);
 		i++;
 	}
-	draw_map(a, a->map.map_2d);
+	if (a->map.size > 100000 && a->cam.scale < 0.5)
+		draw_map_world(a, a->map.map_2d);
+	else
+		draw_map(a, a->map.map_2d);
 }
 
 void	print_map2d(t_3d *map, int size)
