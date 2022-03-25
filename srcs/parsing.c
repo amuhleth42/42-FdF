@@ -125,5 +125,6 @@ void	parser(char *path, t_map *map)
 	map->size = map->x * map->y;
 	map->world = ft_calloc(map->size + 1, sizeof(t_3d));
 	map->render = ft_calloc(map->size + 1, sizeof(t_3dv));
+	map->map_2d = ft_calloc(map->size + 1, sizeof(t_2d));
 	fill_3d_map(lines, map);
 }

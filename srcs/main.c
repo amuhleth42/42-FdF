@@ -31,9 +31,9 @@ void	perspective_divide(t_3dv *p)
 
 void	point_in_view(t_cam cam, t_3d *p, t_3dv *render)
 {
-	render->x = 1 * (cam.view[0][0] * p->x + cam.view[0][1] * p->y + cam.view[0][2] * p->z + cam.view[0][3]);
-	render->y = 1 * (cam.view[1][0] * p->x + cam.view[1][1] * p->y + cam.view[1][2] * p->z + cam.view[1][3]);
-	render->z = 1 * (cam.view[2][0] * p->x + cam.view[2][1] * p->y + cam.view[2][2] * p->z + cam.view[2][3]);
+	render->x = cam.view[0][0] * p->x + cam.view[0][1] * p->y + cam.view[0][2] * p->z + cam.view[0][3];
+	render->y = cam.view[1][0] * p->x +	cam.view[1][1] * p->y + cam.view[1][2] * p->z + cam.view[1][3];
+	render->z = cam.view[2][0] * p->x + cam.view[2][1] * p->y + cam.view[2][2] * p->z + cam.view[2][3];
 }
 
 void	zoom(t_fdf *a, t_3dv *p)
@@ -53,9 +53,7 @@ void	render(t_fdf *a)
 {
 	int	i;
 
-	//clear_img(&a->i);
 	i = 0;
-	a->map.map_2d = ft_calloc(a->map.size + 1, sizeof(t_3d));
 	while (i < a->map.size)
 	{
 		point_in_view(a->cam, &a->map.world[i], &a->map.render[i]);
@@ -80,6 +78,16 @@ void	print_map2d(t_3d *map, int size)
 		ft_printf(", z: %d\n", map[i].z);
 		i++;
 	}
+}
+
+void	init_mlx_hook(t_fdf *a)
+{
+	mlx_key_hook(a->win, &key_hook, a);
+	mlx_hook(a->win, ON_MOUSEDOWN, 0, &mouse_down, a);
+	mlx_hook(a->win, ON_MOUSEUP, 0, &mouse_up, a);
+	mlx_hook(a->win, ON_KEYDOWN, 0, &key_down, a);
+	mlx_hook(a->win, ON_MOUSEMOVE, 0, &mouse_move, a);
+	mlx_loop(a->mlx);
 }
 
 int	main(int argc, char **argv)
@@ -107,7 +115,7 @@ int	main(int argc, char **argv)
 	a.cam.m[2][0] = sqrt(2);
 	a.cam.m[2][1] = -sqrt(2);
 	a.cam.m[2][2] = sqrt(2);
-	a.cam.scale = 4.0;
+	a.cam.scale = 3.0;
 	a.cam.pinhole = 0;
 	a.cam.offset_x = WIN_WIDTH / 2;
 	a.cam.offset_y = WIN_HEIGHT / 3;
@@ -121,11 +129,5 @@ int	main(int argc, char **argv)
 	world_to_view(&a);
 	render(&a);
 	//print_map2d(a.map.map_2d, a.map.size);
-	//draw_map(&a, a.map.map_2d);
-	mlx_key_hook(a.win, &key_hook, &a);
-	mlx_hook(a.win, ON_MOUSEDOWN, 0, &mouse_down, &a);
-	mlx_hook(a.win, ON_MOUSEUP, 0, &mouse_up, &a);
-	mlx_hook(a.win, ON_KEYDOWN, 0, &key_down, &a);
-	mlx_hook(a.win, ON_MOUSEMOVE, 0, &mouse_move, &a);
-	mlx_loop(a.mlx);
+	init_mlx_hook(&a);
 }
