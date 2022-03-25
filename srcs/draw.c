@@ -12,11 +12,12 @@
 
 #include "fdf.h"
 
-void	draw_map(t_fdf *a, t_3d *map)
+void	draw_map(t_fdf *a, t_2d *map)
 {
 	int	i;
 	int	j;
 
+	clear_img(&a->i);
 	j = 0;
 	while (j < a->map.y)
 	{

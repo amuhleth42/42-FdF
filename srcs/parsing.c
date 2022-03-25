@@ -17,13 +17,11 @@ t_list	*read_file(char *path)
 {
 	t_list	*map;
 	char	*line;
-	int		i;
 	int		fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		die("open failed.\n");
-	i = 0;
 	line = ft_strtrim(get_next_line(fd), "\n");
 	if (!line)
 		return (NULL);

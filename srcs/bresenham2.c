@@ -12,17 +12,15 @@
 
 #include "fdf.h"
 
-void	line_q1(t_fdf *a, t_3d p1, t_3d p2)
+void	line_q1(t_fdf *a, t_2d p1, t_2d p2)
 {
 	int	dx;
 	int	dy;
 	int	p;
-	int	i;
 
 	dx = p2.x - p1.x;
 	dy = p2.y - p1.y;
 	p = 2 * dy - dx;
-	i = 0;
 	while (p1.x <= p2.x)
 	{
 		put_pixel_to_img(&a->i, p1.x, p1.y, 0x00FFFFFF);
@@ -37,17 +35,15 @@ void	line_q1(t_fdf *a, t_3d p1, t_3d p2)
 	}
 }
 
-void	line_q2(t_fdf *a, t_3d p1, t_3d p2)
+void	line_q2(t_fdf *a, t_2d p1, t_2d p2)
 {
 	int	dx;
 	int	dy;
 	int	p;
-	int	i;
 
 	dx = p2.x - p1.x;
 	dy = p2.y - p1.y;
 	p = 2 * dx - dy;
-	i = 0;
 	while (p1.y <= p2.y)
 	{
 		put_pixel_to_img(&a->i, p1.x, p1.y, 0x00FFFFFF);
@@ -62,17 +58,15 @@ void	line_q2(t_fdf *a, t_3d p1, t_3d p2)
 	}
 }
 
-void	line_q3(t_fdf *a, t_3d p1, t_3d p2)
+void	line_q3(t_fdf *a, t_2d p1, t_2d p2)
 {
 	int	dx;
 	int	dy;
 	int	p;
-	int	i;
 
 	dx = abs(p2.x - p1.x);
 	dy = p2.y - p1.y;
 	p = 2 * dx - dy;
-	i = 0;
 	while (p1.y <= p2.y)
 	{
 		put_pixel_to_img(&a->i, p1.x, p1.y, 0x00FFFFFF);
@@ -87,17 +81,15 @@ void	line_q3(t_fdf *a, t_3d p1, t_3d p2)
 	}
 }
 
-void	line_q4(t_fdf *a, t_3d p1, t_3d p2)
+void	line_q4(t_fdf *a, t_2d p1, t_2d p2)
 {
 	int	dx;
 	int	dy;
 	int	p;
-	int	i;
 
 	dx = abs(p2.x - p1.x);
 	dy = p2.y - p1.y;
 	p = 2 * dy - dx;
-	i = 0;
 	while (p1.x >= p2.x)
 	{
 		put_pixel_to_img(&a->i, p1.x, p1.y, 0x00FFFFFF);

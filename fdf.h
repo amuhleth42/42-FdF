@@ -18,14 +18,15 @@
 # include <math.h>
 # include <fcntl.h>
 
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
+# define WIN_WIDTH 1220
+# define WIN_HEIGHT 720
 
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
 
 enum
 {
+	ON_KEYDOWN = 2,
 	ON_MOUSEDOWN = 4,
 	ON_MOUSEUP = 5,
 	ON_MOUSEMOVE = 6
@@ -66,7 +67,7 @@ typedef struct s_map
 {
 	t_3d	*world;
 	t_3dv	*render;
-	t_3d	*map_2d;
+	t_2d	*map_2d;
 	int		x;
 	int		y;
 	int		size;
@@ -76,8 +77,8 @@ typedef struct s_cam
 {
 	double	m[3][3];
 	double	view[4][4];
-	int		x_cam;
-	int		y_cam;
+	int		offset_x;
+	int		offset_y;
 	t_3dv	pos;
 	double	scale;
 	int	pinhole;
@@ -109,22 +110,25 @@ void	parser(char *path, t_map *map);
 void	put_pixel_to_img(t_img *i, int x, int y, int color);
 void	die(char *s);
 
-void	bresenham(t_fdf *a, t_3d p1, t_3d p2);
+void	bresenham(t_fdf *a, t_2d p1, t_2d p2);
 
-void	line_q1(t_fdf *a, t_3d p1, t_3d p2);
-void	line_q2(t_fdf *a, t_3d p1, t_3d p2);
-void	line_q3(t_fdf *a, t_3d p1, t_3d p2);
-void	line_q4(t_fdf *a, t_3d p1, t_3d p2);
+void	line_q1(t_fdf *a, t_2d p1, t_2d p2);
+void	line_q2(t_fdf *a, t_2d p1, t_2d p2);
+void	line_q3(t_fdf *a, t_2d p1, t_2d p2);
+void	line_q4(t_fdf *a, t_2d p1, t_2d p2);
 
 int		key_hook(int key, t_fdf *a);
+int		key_down(int key, t_fdf *a);
 int		mouse_down(int button, int x, int y, t_fdf *a);
 int		mouse_up(int button, int x, int y, t_fdf *a);
 int		mouse_move(int x, int y, t_fdf *a);
 
-void	draw_map(t_fdf *a, t_3d *map);
+void	draw_map(t_fdf *a, t_2d *map);
 
 void	clear_img(t_img *i);
 
 void	render(t_fdf *a);
+
+void	world_to_view(t_fdf *a);
 
 #endif

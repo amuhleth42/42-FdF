@@ -13,6 +13,7 @@ SRCS		= $(addprefix srcs/,	\
 			  image.c				\
 			  keyboard.c			\
 			  mouse.c				\
+			  view_matrix.c			\
 			  parsing.c)
 
 

@@ -12,6 +12,18 @@
 
 #include "fdf.h"
 
+/*void	move(int key, t_fdf *a)
+{
+	if (key == 13)
+		a->cam.offset_y -= 10;
+	if (key == 1)
+		a->cam.offset_y += 10;
+	if (key == 0)
+		a->cam.offset_x -= 10;
+	if (key == 2)
+		a->cam.offset_x += 10;
+}*/
+
 int	key_hook(int key, t_fdf *a)
 {
 	ft_printf("%d\n", key);
@@ -27,6 +39,20 @@ int	key_hook(int key, t_fdf *a)
 		else
 			a->cam.pinhole = 0;
 	}
+	render(a);
+	return (0);
+}
+
+int	key_down(int key, t_fdf *a)
+{
+	if (key == 13)
+		a->cam.offset_y += 20;
+	if (key == 1)
+		a->cam.offset_y -= 20;
+	if (key == 0)
+		a->cam.offset_x += 20;
+	if (key == 2)
+		a->cam.offset_x -= 20;
 	render(a);
 	return (0);
 }

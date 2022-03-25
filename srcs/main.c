@@ -43,90 +43,17 @@ void	zoom(t_fdf *a, t_3dv *p)
 	p->z *= a->cam.scale;
 }
 
-t_3dv	normalize(t_3dv v)
+void	offset_point(t_3dv *p, t_2d *p_2d, t_fdf *a)
 {
-	t_3dv	res;
-	double	len2;
-	double	inv_len;
-
-	len2 = v.x * v.x + v.y * v.y + v.z * v.z;
-	if (len2 > 0)
-	{
-		inv_len = 1 / sqrt(len2);
-		res.x = v.x * inv_len;
-		res.y = v.y * inv_len;
-		res.z = v.z * inv_len;
-	}
-	else
-	{
-		res.x = v.x;
-		res.y = v.y;
-		res.z = v.z;
-	}
-	return (res);
-
-}
-
-t_3dv	cross_product(t_3dv a, t_3dv b)
-{
-	t_3dv	res;
-
-	res.x = a.y * b.z - a.z * b.y;
-	res.y = a.z * b.x - a.x * b.z;
-	res.z = a.x * b.y - a.y * b.x;
-	return (res);
-}
-
-void	fourth_row(t_fdf *a, t_3dv *pos)
-{
-	double	*s;
-	double	*u;
-	double	*f;
-
-	s = a->cam.view[0];
-	u = a->cam.view[1];
-	f = a->cam.view[2];
-	a->cam.view[3][0] = -pos->x * s[0] - pos->y * s[1] - pos->z * s[2];
-	a->cam.view[3][1] = -pos->x * u[0] - pos->y * u[1] - pos->z * u[2];
-	a->cam.view[3][2] = -pos->x * f[0] - pos->y * f[1] - pos->z * f[2];
-}
-
-void	world_to_view(t_fdf *a)
-{
-	t_3dv	f;
-	t_3dv	s;
-	t_3dv	up;
-	t_3dv	u;
-
-	up.x = 0;
-	up.y = 0;
-	up.z = -1;
-	f = normalize(a->cam.pos);
-	s = cross_product(f, normalize(up));
-	u = cross_product(s, f);
-	a->cam.view[0][0] = -s.x;
-	a->cam.view[0][1] = -s.y;
-	a->cam.view[0][2] = -s.z;
-	a->cam.view[1][0] = u.x;
-	a->cam.view[1][1] = u.y;
-	a->cam.view[1][2] = u.z;
-	a->cam.view[2][0] = -f.x;
-	a->cam.view[2][1] = -f.y;
-	a->cam.view[2][2] = -f.z;
-	fourth_row(a, &a->cam.pos);
-}
-
-void	offset_point(t_3dv *p, t_3d *p_2d)
-{
-	p_2d->x = floor(p->x) + WIN_WIDTH / 2;
-	p_2d->y = floor(p->y) + WIN_HEIGHT / 2;
+	p_2d->x = floor(p->x) + a->cam.offset_x;
+	p_2d->y = floor(p->y) + a->cam.offset_y;
 }
 
 void	render(t_fdf *a)
 {
 	int	i;
 
-	clear_img(&a->i);
+	//clear_img(&a->i);
 	i = 0;
 	a->map.map_2d = ft_calloc(a->map.size + 1, sizeof(t_3d));
 	while (i < a->map.size)
@@ -135,7 +62,7 @@ void	render(t_fdf *a)
 		if (a->cam.pinhole)
 			perspective_divide(&a->map.render[i]);
 		zoom(a, &a->map.render[i]);
-		offset_point(&a->map.render[i], &a->map.map_2d[i]);
+		offset_point(&a->map.render[i], &a->map.map_2d[i], a);
 		i++;
 	}
 	draw_map(a, a->map.map_2d);
@@ -180,20 +107,21 @@ int	main(int argc, char **argv)
 	a.cam.m[2][0] = sqrt(2);
 	a.cam.m[2][1] = -sqrt(2);
 	a.cam.m[2][2] = sqrt(2);
-	a.cam.scale = 1.0;
+	a.cam.scale = 4.0;
 	a.cam.pinhole = 0;
-	a.cam.x_cam = WIN_WIDTH / 2;
-	a.cam.y_cam = WIN_HEIGHT / 2;
-	a.cam.pos.x = 2 * a.map.x;
-	a.cam.pos.y = 2 * a.map.x;
-	a.cam.pos.z = 20;
+	a.cam.offset_x = WIN_WIDTH / 2;
+	a.cam.offset_y = WIN_HEIGHT / 3;
+	a.cam.pos.x = 10 * a.map.x;
+	a.cam.pos.y = 10 * a.map.x;
+	a.cam.pos.z = 4 * a.map.x;
 	world_to_view(&a);
 	render(&a);
-	print_map2d(a.map.map_2d, a.map.size);
+	//print_map2d(a.map.map_2d, a.map.size);
 	//draw_map(&a, a.map.map_2d);
 	mlx_key_hook(a.win, &key_hook, &a);
 	mlx_hook(a.win, ON_MOUSEDOWN, 0, &mouse_down, &a);
 	mlx_hook(a.win, ON_MOUSEUP, 0, &mouse_up, &a);
+	mlx_hook(a.win, ON_KEYDOWN, 0, &key_down, &a);
 	//mlx_hook(a.win, ON_MOUSEMOVE, 0, &mouse_move, &a);
 	mlx_loop(a.mlx);
 }
