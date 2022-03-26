@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   view_matrix.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/26 16:02:01 by amuhleth          #+#    #+#             */
+/*   Updated: 2022/03/26 16:06:39 by amuhleth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fdf.h"
 
@@ -23,7 +33,6 @@ t_3dv	normalize(t_3dv v)
 		res.z = v.z;
 	}
 	return (res);
-
 }
 
 t_3dv	cross_product(t_3dv a, t_3dv b)
@@ -60,7 +69,10 @@ void	world_to_view(t_fdf *a)
 	up.x = 0;
 	up.y = 0;
 	up.z = -1;
-	f = normalize(a->cam.pos);
+	f.x = a->cam.pos.x - a->cam.dir.x;
+	f.y = a->cam.pos.y - a->cam.dir.y;
+	f.z = a->cam.pos.z - a->cam.dir.z;
+	f = normalize(f);
 	s = cross_product(f, normalize(up));
 	u = cross_product(s, f);
 	a->cam.view[0][0] = -s.x;

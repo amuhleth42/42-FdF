@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:33:32 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/23 15:43:40 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/26 15:44:41 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int	mouse_down(int button, int x, int y, t_fdf *a)
 		a->cam.scale *= 1.0 + 0.1;
 	if (button == SCROLL_DOWN)
 		a->cam.scale *= 1.0 - 0.1;
-	if (button == 1)
+	if (button == LEFT)
 		a->mouse.left_down = 1;
-	if (button == 2)
+	if (button == RIGHT)
 		a->mouse.right_down = 1;
 	render(a);
 	return (0);
@@ -56,9 +56,9 @@ int	mouse_up(int button, int x, int y, t_fdf *a)
 {
 	(void) x;
 	(void) y;
-	if (button == 1)
+	if (button == LEFT)
 		a->mouse.left_down = 0;
-	if (button == 2)
+	if (button == RIGHT)
 		a->mouse.right_down = 0;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:34:12 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/23 13:40:11 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/26 15:47:28 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	fill_3d_line(char *line, t_map *map, int *i)
 		map->world[*i].x = 10 * x;
 		map->world[*i].y = 10 * (*i / map->x);
 		map->world[*i].z = 1 * ft_atoi(points[x]);
-		map->world[*i].color = 0xFFFFFFFF;
+		map->world[*i].color = COLOR;
 		*i += 1;
 		x++;
 	}

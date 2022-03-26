@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:27:44 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/23 18:06:38 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:02:54 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # define WIN_WIDTH 1220
 # define WIN_HEIGHT 720
 
+# define COLOR 0xFF2C3C
+# define LEFT 1
+# define RIGHT 2
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
 
@@ -80,6 +83,7 @@ typedef struct s_cam
 	int		offset_x;
 	int		offset_y;
 	t_3dv	pos;
+	t_3dv	dir;
 	double	scale;
 	double	altitude;
 	int	pinhole;
@@ -133,5 +137,8 @@ void	clear_img(t_img *i);
 void	render(t_fdf *a);
 
 void	world_to_view(t_fdf *a);
+t_3dv	normalize(t_3dv v);
+
+int		get_color(int c1, int c2);
 
 #endif
