@@ -90,9 +90,7 @@ void	world_to_view(t_fdf *a)
 	up.x = 0;
 	up.y = 0;
 	up.z = -1;
-	f.x = a->cam.pos.x - a->cam.dir.x;
-	f.y = a->cam.pos.y - a->cam.dir.y;
-	f.z = a->cam.pos.z - a->cam.dir.z;
+	f = a->cam.pos;
 	f = normalize(f);
 	s = cross_product(f, normalize(up));
 	u = cross_product(s, f);
@@ -106,5 +104,5 @@ void	world_to_view(t_fdf *a)
 	a->cam.view[2][1] = -f.y;
 	a->cam.view[2][2] = -f.z;
 	fourth_row(a, &a->cam.pos);
-	print_matrix(&a->cam);
+	//print_matrix(&a->cam);
 }

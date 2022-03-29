@@ -1,6 +1,6 @@
 NAME		= fdf
 
-FLAGS		= -Wall -Wextra -Werror -O2
+FLAGS		= -Wall -Wextra -Werror -Ofast
 INCL		= -I. -I./mlx -I./libft
 LIB			= -L./libft -lft -L./mlx -lmlx -framework OpenGL -framework AppKit
 

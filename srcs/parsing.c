@@ -85,8 +85,8 @@ void	fill_3d_line(char *line, t_map *map, int *i)
 	points = ft_split(line, ' ');
 	while (x < map->x)
 	{
-		map->world[*i].x = 10 * x;
-		map->world[*i].y = 10 * (*i / map->x);
+		map->world[*i].x = 10 * x -  10 * map->x / 2;
+		map->world[*i].y = 10 * (*i / map->x) - 10 * map->y / 2;
 		map->world[*i].z = 1 * ft_atoi(points[x]);
 		map->world[*i].color = COLOR;
 		*i += 1;

@@ -94,13 +94,9 @@ void	init_mlx_hook(t_fdf *a)
 
 void	init_cam_position(t_fdf *a)
 {
-	a->cam.dir.x = 10 * a->map.x / 2;
-	a->cam.dir.y = 10 * a->map.y / 2;
-	a->cam.dir.z = 0;
-	a->cam.pos.x = 10 * a->map.x + a->cam.dir.x;
-	a->cam.pos.y = 10 * a->map.x + a->cam.dir.y;
+	a->cam.pos.x = 10 * a->map.x;
+	a->cam.pos.y = 10 * a->map.x;
 	a->cam.pos.z = 10 * a->map.x;
-	//a->cam.pos = normalize(a->cam.pos);
 }
 
 int	main(int argc, char **argv)
@@ -115,7 +111,7 @@ int	main(int argc, char **argv)
 	}
 	parser(argv[1], &a.map);
 	a.mlx = mlx_init();
-	a.win = mlx_new_window(a.mlx, WIN_WIDTH, WIN_HEIGHT, "Draw_line");
+	a.win = mlx_new_window(a.mlx, WIN_WIDTH, WIN_HEIGHT, "FdF");
 	a.i.img = mlx_new_image(a.mlx, WIN_WIDTH, WIN_HEIGHT);
 	a.i.addr = mlx_get_data_addr(a.i.img, &a.i.bpp, &a.i.ll, &a.i.endian);
 
