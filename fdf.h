@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:27:44 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/29 18:00:45 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:41:13 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ void	render(t_fdf *a);
 
 void	world_to_view(t_fdf *a);
 t_3dv	normalize(t_3dv v);
+void	print_matrix(t_cam *cam);
 
 int		get_color(int c1, int c2);
 

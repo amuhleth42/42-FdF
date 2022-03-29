@@ -6,11 +6,12 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 16:02:01 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/29 18:46:59 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/29 19:26:27 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdio.h>
 
 t_3dv	normalize(t_3dv v)
 {
@@ -59,6 +60,26 @@ void	fourth_row(t_fdf *a, t_3dv *pos)
 	a->cam.view[2][3] = -pos->x * f[0] - pos->y * f[1] - pos->z * f[2];
 }
 
+void	print_matrix(t_cam *cam)
+{
+	printf("%f  ", cam->view[0][0]);
+	printf("%f  ", cam->view[0][1]);
+	printf("%f  ", cam->view[0][2]);
+	printf("%f\n", cam->view[0][3]);
+	printf("%f  ", cam->view[1][0]);
+	printf("%f  ", cam->view[1][1]);
+	printf("%f  ", cam->view[1][2]);
+	printf("%f\n", cam->view[1][3]);
+	printf("%f  ", cam->view[2][0]);
+	printf("%f  ", cam->view[2][1]);
+	printf("%f  ", cam->view[2][2]);
+	printf("%f\n", cam->view[2][3]);
+	printf("%f  ", cam->view[3][0]);
+	printf("%f  ", cam->view[3][1]);
+	printf("%f  ", cam->view[3][2]);
+	printf("%f\n", cam->view[3][3]);
+}
+
 void	world_to_view(t_fdf *a)
 {
 	t_3dv	f;
@@ -85,4 +106,5 @@ void	world_to_view(t_fdf *a)
 	a->cam.view[2][1] = -f.y;
 	a->cam.view[2][2] = -f.z;
 	fourth_row(a, &a->cam.pos);
+	print_matrix(&a->cam);
 }
