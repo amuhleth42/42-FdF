@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:33:32 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/29 17:29:13 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:02:51 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	mouse_move(int x, int y, t_fdf *a)
 	dy = a->mouse.y - a->mouse.lasty;
 	if (a->mouse.left_down)
 		move(a, dx, dy);
+	if (a->mouse.right_down)
+		rotate_around_z(a, dx);
 	if (a->mouse.left_down || a->mouse.right_down)
 		render(a);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:27:44 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/29 16:27:19 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/29 18:00:45 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,5 +141,7 @@ void	world_to_view(t_fdf *a);
 t_3dv	normalize(t_3dv v);
 
 int		get_color(int c1, int c2);
+
+void	rotate_around_z(t_fdf *a, int x);
 
 #endif
