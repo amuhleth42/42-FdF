@@ -6,11 +6,12 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:33:32 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/26 15:44:41 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:29:13 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdio.h>
 
 void	move(t_fdf *a, int x, int y)
 {
@@ -41,9 +42,15 @@ int	mouse_down(int button, int x, int y, t_fdf *a)
 	(void) x;
 	(void) y;
 	if (button == SCROLL_UP)
+	{
 		a->cam.scale *= 1.0 + 0.1;
+		printf("Scale : %f\n", a->cam.scale);
+	}
 	if (button == SCROLL_DOWN)
+	{
 		a->cam.scale *= 1.0 - 0.1;
+		printf("Scale : %f\n", a->cam.scale);
+	}
 	if (button == LEFT)
 		a->mouse.left_down = 1;
 	if (button == RIGHT)

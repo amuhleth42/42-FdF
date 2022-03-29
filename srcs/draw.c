@@ -6,13 +6,13 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:37:30 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/23 16:48:17 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:37:31 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	draw_map(t_fdf *a, t_2d *map)
+/*void	draw_map(t_fdf *a, t_2d *map)
 {
 	int	i;
 	int	j;
@@ -33,17 +33,22 @@ void	draw_map(t_fdf *a, t_2d *map)
 		j++;
 	}
 	mlx_put_image_to_window(a->mlx, a->win, a->i.img, 0, 0);
-}
+}*/
 
 
-void	draw_map_world(t_fdf *a, t_2d *map)
+void	draw_map(t_fdf *a, t_2d *map)
 {
 	int	i;
 	int	j;
 	int	delta;
 
 	clear_img(&a->i);
-	delta = (int) pow(1 - log2(a->cam.scale), 1.5);
+	if (a->cam.pinhole)
+		delta = (int) pow(1 - log2(a->cam.scale / a->cam.p_size), 1.5);
+	else
+		delta = (int) pow(1 - log2(a->cam.scale), 1.5);
+	if (delta < 1)
+		delta = 1;
 	j = 0;
 	while (j < a->map.y)
 	{

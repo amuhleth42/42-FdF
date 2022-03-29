@@ -6,11 +6,12 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:40:34 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/26 17:19:33 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:38:24 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdio.h>
 
 /*void	render_point(t_cam cam, t_3d *p, t_3d *p_2d)
 {
@@ -64,10 +65,7 @@ void	render(t_fdf *a)
 		offset_point(&a->map.render[i], &a->map.map_2d[i], a);
 		i++;
 	}
-	if (a->map.size > 100000 && a->cam.scale < 0.5)
-		draw_map_world(a, a->map.map_2d);
-	else
-		draw_map(a, a->map.map_2d);
+	draw_map(a, a->map.map_2d);
 }
 
 void	print_map2d(t_3d *map, int size)
@@ -133,6 +131,11 @@ int	main(int argc, char **argv)
 	a.cam.scale = 1.0;
 	a.cam.altitude = 1.0;
 	a.cam.pinhole = 0;
+	if (a.map.x >= 50)
+		a.cam.p_size = a.map.x * 0.022;
+	else
+		a.cam.p_size = 1;
+	printf("P_size : %f\n", a.cam.p_size);
 	a.cam.offset_x = WIN_WIDTH / 2;
 	a.cam.offset_y = WIN_HEIGHT / 3;
 	init_cam_position(&a);

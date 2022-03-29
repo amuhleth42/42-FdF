@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:27:44 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/26 17:02:54 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:27:19 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct s_cam
 	double	scale;
 	double	altitude;
 	int	pinhole;
+	double	p_size;
 }			t_cam;
 
 typedef struct s_mouse
