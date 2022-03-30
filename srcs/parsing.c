@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:34:12 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/26 15:47:28 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:47:04 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,6 @@ int	check_fdf_format(char *path)
 		return (1);
 }
 
-void	print_list(t_list *map)
-{
-	printf("%s\n", (char *)map->content);
-	while (map->next)
-	{
-		map = map->next;
-		printf("%s\n", (char *)map->content);
-	}
-}
-
 int	count_elem_in_line(char *s)
 {
 	int	count;
@@ -85,7 +75,7 @@ void	fill_3d_line(char *line, t_map *map, int *i)
 	points = ft_split(line, ' ');
 	while (x < map->x)
 	{
-		map->world[*i].x = 10 * x -  10 * map->x / 2;
+		map->world[*i].x = 10 * x - 10 * map->x / 2;
 		map->world[*i].y = 10 * (*i / map->x) - 10 * map->y / 2;
 		map->world[*i].z = 1 * ft_atoi(points[x]);
 		map->world[*i].color = COLOR;
@@ -115,7 +105,6 @@ void	parser(char *path, t_map *map)
 	t_list	*lines;
 
 	lines = read_file(path);
-	print_list(lines);
 	map->x = count_elem_in_line(lines->content);
 	map->y = ft_lstsize(lines);
 	printf("Y : %d\nX : %d\n", map->y, map->x);

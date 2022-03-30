@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:46:23 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/29 19:43:37 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:27:02 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,4 @@ void	rotate_around_z(t_fdf *a, int x)
 	p[0][1] = -tmp[0][0] * sin(0.01 * x) + tmp[0][1] * cos(0.01 * x);
 	p[1][1] = -tmp[1][0] * sin(0.01 * x) + tmp[1][1] * cos(0.01 * x);
 	p[2][1] = -tmp[2][0] * sin(0.01 * x) + tmp[2][1] * cos(0.01 * x);
-	//print_matrix(&a->cam);
 }

@@ -6,12 +6,11 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:30:51 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/29 16:56:57 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:50:29 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 int	key_hook(int key, t_fdf *a)
 {
@@ -24,16 +23,12 @@ int	key_hook(int key, t_fdf *a)
 	{
 		if (a->cam.pinhole == 0)
 		{
-			printf("Scale ortho : %f\n", a->cam.scale);
 			a->cam.scale = a->cam.scale * a->cam.p_size;
-			printf("Scale persp : %f\n\n", a->cam.scale);
 			a->cam.pinhole = 1;
 		}
 		else
 		{
-			printf("Scale persp : %f\n", a->cam.scale);
 			a->cam.scale = a->cam.scale / a->cam.p_size;
-			printf("Scale ortho : %f\n\n", a->cam.scale);
 			a->cam.pinhole = 0;
 		}
 	}

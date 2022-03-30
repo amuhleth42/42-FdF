@@ -6,35 +6,29 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:40:34 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/29 17:38:24 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:48:15 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
-
-/*void	render_point(t_cam cam, t_3d *p, t_3d *p_2d)
-{
-	p_2d->x = cam.x_cam + cam.scale * (cam.m[0][0] * p->x + cam.m[0][1] * p->y + cam.m[0][2] * p->z + );
-	p_2d->y = cam.y_cam + cam.scale * (cam.m[1][0] * p->x + cam.m[1][1] * p->y + cam.m[1][2] * p->z);
-	p_2d->z = cam.scale * (cam.m[2][0] * p->x + cam.m[2][1] * p->y + cam.m[2][2] * p->z);
-}*/
 
 void	perspective_divide(t_3dv *p)
 {
-	if (p->z)
+	if (p->z + WIN_WIDTH && p->z + WIN_HEIGHT)
 	{
 		p->x = p->x * WIN_WIDTH / (p->z + WIN_WIDTH);
 		p->y = p->y * WIN_HEIGHT / (p->z + WIN_HEIGHT);
 	}
 }
 
-
 void	point_in_view(t_cam cam, t_3d *p, t_3dv *render)
 {
-	render->x = cam.view[0][0] * p->x + cam.view[0][1] * p->y + cam.view[0][2] * p->z * cam.altitude + cam.view[0][3];
-	render->y = cam.view[1][0] * p->x +	cam.view[1][1] * p->y + cam.view[1][2] * p->z * cam.altitude + cam.view[1][3];
-	render->z = cam.view[2][0] * p->x + cam.view[2][1] * p->y + cam.view[2][2] * p->z * cam.altitude + cam.view[2][3];
+	render->x = cam.view[0][0] * p->x + cam.view[0][1] * p->y
+		+ cam.view[0][2] * p->z * cam.altitude + cam.view[0][3];
+	render->y = cam.view[1][0] * p->x + cam.view[1][1] * p->y
+		+ cam.view[1][2] * p->z * cam.altitude + cam.view[1][3];
+	render->z = cam.view[2][0] * p->x + cam.view[2][1] * p->y
+		+ cam.view[2][2] * p->z * cam.altitude + cam.view[2][3];
 }
 
 void	zoom(t_fdf *a, t_3dv *p)
@@ -101,7 +95,7 @@ void	init_cam_position(t_fdf *a)
 
 int	main(int argc, char **argv)
 {
-	t_fdf a;
+	t_fdf	a;
 
 	(void) argv;
 	if (argc != 2)
@@ -114,16 +108,6 @@ int	main(int argc, char **argv)
 	a.win = mlx_new_window(a.mlx, WIN_WIDTH, WIN_HEIGHT, "FdF");
 	a.i.img = mlx_new_image(a.mlx, WIN_WIDTH, WIN_HEIGHT);
 	a.i.addr = mlx_get_data_addr(a.i.img, &a.i.bpp, &a.i.ll, &a.i.endian);
-
-	/*a.cam.m[0][0] = sqrt(3);
-	a.cam.m[0][1] = -sqrt(3);
-	a.cam.m[0][2] = 0.0;
-	a.cam.m[1][0] = 1.0;
-	a.cam.m[1][1] = 1.0;
-	a.cam.m[1][2] = -2.0;
-	a.cam.m[2][0] = sqrt(2);
-	a.cam.m[2][1] = -sqrt(2);
-	a.cam.m[2][2] = sqrt(2);*/
 	a.cam.scale = 1.0;
 	a.cam.altitude = 1.0;
 	a.cam.pinhole = 0;
@@ -131,9 +115,8 @@ int	main(int argc, char **argv)
 		a.cam.p_size = a.map.x * 0.022;
 	else
 		a.cam.p_size = 1;
-	printf("P_size : %f\n", a.cam.p_size);
 	a.cam.offset_x = WIN_WIDTH / 2;
-	a.cam.offset_y = WIN_HEIGHT / 3;
+	a.cam.offset_y = WIN_HEIGHT / 2;
 	init_cam_position(&a);
 	a.mouse.left_down = 0;
 	a.mouse.right_down = 0;
@@ -141,6 +124,5 @@ int	main(int argc, char **argv)
 	a.mouse.y = 0;
 	world_to_view(&a);
 	render(&a);
-	//print_map2d(a.map.map_2d, a.map.size);
 	init_mlx_hook(&a);
 }

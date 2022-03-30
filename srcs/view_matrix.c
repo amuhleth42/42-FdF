@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 16:02:01 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/29 19:26:27 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:39:15 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,4 @@ void	world_to_view(t_fdf *a)
 	a->cam.view[2][1] = -f.y;
 	a->cam.view[2][2] = -f.z;
 	fourth_row(a, &a->cam.pos);
-	//print_matrix(&a->cam);
 }
