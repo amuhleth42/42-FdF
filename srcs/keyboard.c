@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:30:51 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/30 15:50:29 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:38:56 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,6 @@ int	key_hook(int key, t_fdf *a)
 
 int	key_down(int key, t_fdf *a)
 {
-	if (key == 13)
-		a->cam.offset_y += 20;
-	if (key == 1)
-		a->cam.offset_y -= 20;
-	if (key == 0)
-		a->cam.offset_x += 20;
-	if (key == 2)
-		a->cam.offset_x -= 20;
 	if (key == 125)
 		a->cam.altitude *= 1.0 - 0.1;
 	if (key == 126)

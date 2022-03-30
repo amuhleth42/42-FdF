@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 15:25:06 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/30 17:09:15 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:22:16 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	gradient(int c1, int c2, int diff)
 	return (c1 + c2 /** percent*/);
 }
 
-int	get_color(int c1, int c2, int diff)
+int	get_color_nul(int c1, int c2, int diff)
 {
 	int	r;
 	int	g;
@@ -44,4 +44,11 @@ int	get_color(int c1, int c2, int diff)
 	g = gradient((c1 >> 8) & 0xFF, (c2 >> 8) & 0xFF, diff);
 	b = gradient(c1 & 0xFF, c2 & 0xFF, diff);
 	return ((r << 16) | (g << 8) | b);
+}
+
+int	get_color(int c1, int c2, int diff)
+{
+	(void) diff;
+	(void) c2;
+	return (c1);
 }

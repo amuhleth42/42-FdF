@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:27:44 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/30 16:59:16 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:31:00 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define WIN_HEIGHT 1080
 
 # define COLOR1 0xFF2C3C
-# define COLOR2 0x56E0FE
+# define COLOR2 0xFF2C3C
 # define LEFT 1
 # define RIGHT 2
 # define SCROLL_UP 4
@@ -80,14 +80,13 @@ typedef struct s_map
 
 typedef struct s_cam
 {
-	double	m[3][3];
 	double	view[4][4];
 	int		offset_x;
 	int		offset_y;
 	t_3dv	pos;
 	double	scale;
 	double	altitude;
-	int	pinhole;
+	int		pinhole;
 	double	p_size;
 }			t_cam;
 
