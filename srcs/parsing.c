@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:34:12 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/30 15:47:04 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:34:53 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,12 @@ void	fill_3d_line(char *line, t_map *map, int *i)
 	{
 		map->world[*i].x = 10 * x - 10 * map->x / 2;
 		map->world[*i].y = 10 * (*i / map->x) - 10 * map->y / 2;
-		map->world[*i].z = 1 * ft_atoi(points[x]);
-		map->world[*i].color = COLOR;
+		map->world[*i].z = ft_atoi(points[x]);
+		if (map->world[*i].z < map->z_min)
+			map->z_min = map->world[*i].z;
+		if (map->world[*i].z > map->z_max)
+			map->z_max = map->world[*i].z;
+		map->map_2d[*i].color = set_stock_color(map, map->world[*i].z);
 		*i += 1;
 		x++;
 	}

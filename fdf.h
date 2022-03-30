@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:27:44 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/30 15:49:09 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:59:16 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 
-# define COLOR 0xFF2C3C
+# define COLOR1 0xFF2C3C
+# define COLOR2 0x56E0FE
 # define LEFT 1
 # define RIGHT 2
 # define SCROLL_UP 4
@@ -54,7 +55,6 @@ typedef struct s_3d
 	int	x;
 	int	y;
 	int	z;
-	int	color;
 }		t_3d;
 
 typedef struct s_img
@@ -74,6 +74,8 @@ typedef struct s_map
 	int		x;
 	int		y;
 	int		size;
+	int		z_min;
+	int		z_max;
 }			t_map;
 
 typedef struct s_cam
@@ -140,7 +142,8 @@ void	world_to_view(t_fdf *a);
 t_3dv	normalize(t_3dv v);
 void	print_matrix(t_cam *cam);
 
-int		get_color(int c1, int c2);
+int		set_stock_color(t_map *map, int z);
+int		get_color(int c1, int c2, int diff);
 
 void	rotate_around_z(t_fdf *a, int x);
 

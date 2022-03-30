@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:40:34 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/30 15:48:15 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:29:56 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	offset_point(t_3dv *p, t_2d *p_2d, t_fdf *a)
 {
 	p_2d->x = floor(p->x) + a->cam.offset_x;
 	p_2d->y = floor(p->y) + a->cam.offset_y;
-	p_2d->color = COLOR;
 }
 
 void	render(t_fdf *a)
@@ -103,6 +102,8 @@ int	main(int argc, char **argv)
 		ft_printf("Error\n");
 		return (1);
 	}
+	a.map.z_min = 0;
+	a.map.z_max = 0;
 	parser(argv[1], &a.map);
 	a.mlx = mlx_init();
 	a.win = mlx_new_window(a.mlx, WIN_WIDTH, WIN_HEIGHT, "FdF");
