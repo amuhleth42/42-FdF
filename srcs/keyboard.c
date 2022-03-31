@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:30:51 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/31 16:59:29 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:15:28 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 int	key_hook(int key, t_fdf *a)
 {
 	if (key == 53)
-	{
-		mlx_destroy_window(a->mlx, a->win);
-		exit(EXIT_SUCCESS);
-	}
+		exit_all(a);
 	if (key == 35)
 	{
 		if (a->cam.pinhole == 0)

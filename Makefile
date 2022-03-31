@@ -17,6 +17,7 @@ SRCS		= $(addprefix srcs/,	\
 			  view_matrix.c			\
 			  color.c				\
 			  rotation.c			\
+			  exit.c				\
 			  parsing.c)
 
 

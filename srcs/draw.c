@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:37:30 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/31 17:04:13 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:33:40 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	draw_map(t_fdf *a, t_2d *map)
 			bresenham(a, map[j * a->map.x + i - delta], map[j * a->map.x + i]);
 			if (j + delta < a->map.y)
 				bresenham(a, map[j * a->map.x + i],
-					map[(j + d) * a->map.x + i]);
+					map[(j + delta) * a->map.x + i]);
 			i += delta;
 		}
 		j += delta;

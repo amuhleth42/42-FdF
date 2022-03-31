@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:27:44 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/31 16:44:57 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:23:43 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ void	put_pixel_to_img(t_img *i, int x, int y, int color);
 void	draw_map(t_fdf *a, t_2d *map);
 
 void	clear_img(t_img *i);
+void	exit_all(t_fdf *a);
 
 void	render(t_fdf *a);
 
