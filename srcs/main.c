@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:40:34 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/30 16:29:56 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:19:22 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ void	render(t_fdf *a)
 	int	i;
 
 	i = 0;
+	if (a->cam.rot_z)
+	{
+		usleep(200);
+		rotate_around_z(a, 1);
+	}
 	while (i < a->map.size)
 	{
 		point_in_view(a->cam, &a->map.world[i], &a->map.render[i]);
@@ -59,6 +64,12 @@ void	render(t_fdf *a)
 		i++;
 	}
 	draw_map(a, a->map.map_2d);
+}
+
+int	loop_render(t_fdf *a)
+{
+	render(a);
+	return (0);
 }
 
 void	print_map2d(t_3d *map, int size)
@@ -82,6 +93,7 @@ void	init_mlx_hook(t_fdf *a)
 	mlx_hook(a->win, ON_MOUSEUP, 0, &mouse_up, a);
 	mlx_hook(a->win, ON_KEYDOWN, 0, &key_down, a);
 	mlx_hook(a->win, ON_MOUSEMOVE, 0, &mouse_move, a);
+	mlx_loop_hook(a->mlx, &loop_render, a);
 	mlx_loop(a->mlx);
 }
 
@@ -116,6 +128,7 @@ int	main(int argc, char **argv)
 		a.cam.p_size = a.map.x * 0.022;
 	else
 		a.cam.p_size = 1;
+	a.cam.rot_z = 0;
 	a.cam.offset_x = WIN_WIDTH / 2;
 	a.cam.offset_y = WIN_HEIGHT / 2;
 	init_cam_position(&a);

@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:27:44 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/30 17:31:00 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:18:08 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_cam
 	double	altitude;
 	int		pinhole;
 	double	p_size;
+	int		rot_z;
 }			t_cam;
 
 typedef struct s_mouse
@@ -116,6 +117,7 @@ void	parser(char *path, t_map *map);
 
 void	put_pixel_to_img(t_img *i, int x, int y, int color);
 void	die(char *s);
+void	switch_bool(int *b);
 
 void	bresenham(t_fdf *a, t_2d p1, t_2d p2);
 
@@ -145,5 +147,7 @@ int		set_stock_color(t_map *map, int z);
 int		get_color(int c1, int c2, int diff);
 
 void	rotate_around_z(t_fdf *a, int x);
+void	rotate_around_y(t_fdf *a, int x);
+void	rotate_around_x(t_fdf *a, int x, int y);
 
 #endif

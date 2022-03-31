@@ -6,11 +6,19 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 17:14:33 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/26 15:28:15 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:17:49 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	switch_bool(int *b)
+{
+	if (*b == 0)
+		*b = 1;
+	else
+		*b = 0;
+}
 
 void	put_pixel_to_img(t_img *i, int x, int y, int color)
 {
