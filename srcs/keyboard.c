@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:30:51 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/31 16:16:21 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:59:29 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	key_down(int key, t_fdf *a)
 		a->cam.altitude *= 1.0 - 0.1;
 	if (key == 126)
 		a->cam.altitude *= 1.0 + 0.1;
-	if (key == 0)
+	if (key == 49)
 		switch_bool(&a->cam.rot_z);
 	render(a);
 	return (0);

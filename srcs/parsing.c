@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:34:12 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/30 16:34:53 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:53:03 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list	*read_file(char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		die("open failed.\n");
+		die("open failed.");
 	line = ft_strtrim(get_next_line(fd), "\n");
 	if (!line)
 		return (NULL);
@@ -33,17 +33,6 @@ t_list	*read_file(char *path)
 	}
 	close(fd);
 	return (map);
-}
-
-int	check_fdf_format(char *path)
-{
-	int	len;
-
-	len = ft_strlen(path);
-	if (ft_strncmp(path + len - 4, ".fdf", 4) != 0)
-		return (0);
-	else
-		return (1);
 }
 
 int	count_elem_in_line(char *s)
@@ -71,6 +60,8 @@ void	fill_3d_line(char *line, t_map *map, int *i)
 	int		x;
 	char	**points;
 
+	map->z_max = 0;
+	map->z_min = 0;
 	x = 0;
 	points = ft_split(line, ' ');
 	while (x < map->x)
