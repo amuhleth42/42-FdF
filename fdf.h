@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:27:44 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/31 17:23:43 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/04/04 19:30:20 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define WIN_HEIGHT 1080
 
 # define COLOR1 0xFF2C3C
-# define COLOR2 0xFF2C3C
+# define COLOR2 0xB166E1
 # define LEFT 1
 # define RIGHT 2
 # define SCROLL_UP 4
@@ -141,8 +141,9 @@ void	world_to_view(t_fdf *a);
 t_3dv	normalize(t_3dv v);
 void	print_matrix(t_cam *cam);
 
-int		set_stock_color(t_map *map, int z);
-int		get_color(int c1, int c2, int diff);
+int		set_point_color(t_map *map, int z);
+void	color_map(t_map *map);
+int		get_color(int c1, int c2, float shade);
 
 void	rotate_around_z(t_fdf *a, int x);
 void	rotate_around_y(t_fdf *a, int x);

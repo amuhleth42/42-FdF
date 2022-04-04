@@ -6,12 +6,11 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:34:12 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/31 16:53:03 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/04/04 19:22:30 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 t_list	*read_file(char *path)
 {
@@ -60,8 +59,6 @@ void	fill_3d_line(char *line, t_map *map, int *i)
 	int		x;
 	char	**points;
 
-	map->z_max = 0;
-	map->z_min = 0;
 	x = 0;
 	points = ft_split(line, ' ');
 	while (x < map->x)
@@ -73,7 +70,6 @@ void	fill_3d_line(char *line, t_map *map, int *i)
 			map->z_min = map->world[*i].z;
 		if (map->world[*i].z > map->z_max)
 			map->z_max = map->world[*i].z;
-		map->map_2d[*i].color = set_stock_color(map, map->world[*i].z);
 		*i += 1;
 		x++;
 	}
@@ -85,6 +81,8 @@ void	fill_3d_map(t_list *lines, t_map *map)
 	int	i;
 	int	y;
 
+	map->z_max = 0;
+	map->z_min = 0;
 	i = 0;
 	y = 0;
 	while (lines)
@@ -102,10 +100,11 @@ void	parser(char *path, t_map *map)
 	lines = read_file(path);
 	map->x = count_elem_in_line(lines->content);
 	map->y = ft_lstsize(lines);
-	printf("Y : %d\nX : %d\n", map->y, map->x);
+	ft_printf("Y : %d\nX : %d\n", map->y, map->x);
 	map->size = map->x * map->y;
 	map->world = ft_calloc(map->size + 1, sizeof(t_3d));
 	map->render = ft_calloc(map->size + 1, sizeof(t_3dv));
 	map->map_2d = ft_calloc(map->size + 1, sizeof(t_2d));
 	fill_3d_map(lines, map);
+	color_map(map);
 }

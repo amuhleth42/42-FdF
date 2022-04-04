@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 18:00:15 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/30 17:00:36 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/04/04 20:02:18 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,18 @@ void	line_q1(t_fdf *a, t_2d p1, t_2d p2)
 	int	dx;
 	int	dy;
 	int	p;
+	int	i;
 
 	dx = p2.x - p1.x;
 	dy = p2.y - p1.y;
 	p = 2 * dy - dx;
-	while (p1.x <= p2.x)
+	i = 0;
+	while (i <= dx)
 	{
-		put_pixel_to_img(&a->i, p1.x, p1.y, get_color(p1.color, p2.color, p2.x - p1.x));
-		p1.x++;
+		if (0 <= p1.x + i && p1.x + i < WIN_WIDTH && 0 <= p1.y && p1.y < WIN_HEIGHT)
+			put_pixel_to_img(&a->i, p1.x + i, p1.y,
+				get_color(p1.color, p2.color, (double)i / dx));
+		i++;
 		if (p < 0)
 			p = p + 2 * dy;
 		else
@@ -40,14 +44,18 @@ void	line_q2(t_fdf *a, t_2d p1, t_2d p2)
 	int	dx;
 	int	dy;
 	int	p;
+	int	i;
 
 	dx = p2.x - p1.x;
 	dy = p2.y - p1.y;
 	p = 2 * dx - dy;
-	while (p1.y <= p2.y)
+	i = 0;
+	while (i <= dy)
 	{
-		put_pixel_to_img(&a->i, p1.x, p1.y, get_color(p1.color, p2.color, p2.y - p1.y));
-		p1.y++;
+		if (0 <= p1.x && p1.x < WIN_WIDTH && 0 <= p1.y + i && p1.y + i < WIN_HEIGHT)
+			put_pixel_to_img(&a->i, p1.x, p1.y + i,
+				get_color(p1.color, p2.color, (double)i / dy));
+		i++;
 		if (p < 0)
 			p = p + 2 * dx;
 		else
@@ -63,14 +71,18 @@ void	line_q3(t_fdf *a, t_2d p1, t_2d p2)
 	int	dx;
 	int	dy;
 	int	p;
+	int	i;
 
 	dx = abs(p2.x - p1.x);
 	dy = p2.y - p1.y;
 	p = 2 * dx - dy;
-	while (p1.y <= p2.y)
+	i = 0;
+	while (i <= dy)
 	{
-		put_pixel_to_img(&a->i, p1.x, p1.y, get_color(p1.color, p2.color, p2.y - p1.y));
-		p1.y++;
+		if (0 <= p1.x && p1.x < WIN_WIDTH && 0 <= p1.y + i && p1.y + i < WIN_HEIGHT)
+			put_pixel_to_img(&a->i, p1.x, p1.y + i,
+				get_color(p1.color, p2.color, (double)i / dy));
+		i++;
 		if (p < 0)
 			p = p + 2 * dx;
 		else
@@ -86,14 +98,18 @@ void	line_q4(t_fdf *a, t_2d p1, t_2d p2)
 	int	dx;
 	int	dy;
 	int	p;
+	int	i;
 
 	dx = abs(p2.x - p1.x);
 	dy = p2.y - p1.y;
 	p = 2 * dy - dx;
-	while (p1.x >= p2.x)
+	i = 0;
+	while (i <= dx)
 	{
-		put_pixel_to_img(&a->i, p1.x, p1.y, get_color(p1.color, p2.color, p1.x - p2.x));
-		p1.x--;
+		if (0 <= p1.x - i && p1.x - i < WIN_WIDTH && 0 <= p1.y && p1.y < WIN_HEIGHT)
+			put_pixel_to_img(&a->i, p1.x - i, p1.y,
+				get_color(p1.color, p2.color, (double)i / dx));
+		i++;
 		if (p < 0)
 			p = p + 2 * dy;
 		else

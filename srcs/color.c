@@ -6,49 +6,46 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 15:25:06 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/30 17:22:16 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/04/04 19:29:57 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdio.h>
 
-int	set_stock_color(t_map *map, int z)
+int	set_point_color(t_map *map, int z)
 {
-	int	middle_z;
+	float	shade;
 
-	middle_z = (map->z_max - map->z_min) / 2;
-	if (z <= middle_z)
-		return (COLOR1);
-	else
-		return (COLOR2);
+	shade = (float)(z - map->z_min) / (map->z_max - map->z_min);
+	return (get_color(COLOR1, COLOR2, shade));
 }
 
-int	gradient(int c1, int c2, int diff)
+int	mix_color(int c1, int c2, float shade)
 {
-	double	percent;
-
-	if (diff)
-		percent = 1 / diff;
-	else
-		percent = 1;
-	return (c1 + c2 /** percent*/);
+	return (c1 - shade * c1 + shade * c2);
 }
 
-int	get_color_nul(int c1, int c2, int diff)
+int	get_color(int c1, int c2, float shade)
 {
 	int	r;
 	int	g;
 	int	b;
 
-	r = gradient((c1 >> 16) & 0xFF, (c2 >> 16) & 0xFF, diff);
-	g = gradient((c1 >> 8) & 0xFF, (c2 >> 8) & 0xFF, diff);
-	b = gradient(c1 & 0xFF, c2 & 0xFF, diff);
-	return ((r << 16) | (g << 8) | b);
+	r = mix_color(c1 >> 16 & 0xFF, c2 >> 16 & 0xFF, shade);
+	g = mix_color(c1 >> 8 & 0xFF, c2 >> 8 & 0xFF, shade);
+	b = mix_color(c1 & 0xFF, c2 & 0xFF, shade);
+	return (r << 16 | g << 8 | b);
 }
 
-int	get_color(int c1, int c2, int diff)
+void	color_map(t_map *map)
 {
-	(void) diff;
-	(void) c2;
-	return (c1);
+	int	i;
+
+	i = 0;
+	while (i < map->size)
+	{
+		map->map_2d[i].color = set_point_color(map, map->world[i].z);
+		i++;
+	}
 }
