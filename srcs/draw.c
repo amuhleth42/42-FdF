@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:37:30 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/31 17:33:40 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:04:31 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,8 @@ void	put_pixel_to_img(t_img *i, int x, int y, int color)
 {
 	char	*dst;
 
-	if (0 <= x && x < WIN_WIDTH && 0 <= y && y < WIN_HEIGHT)
-	{
-		dst = i->addr + (y * i->ll + x * (i->bpp / 8));
-		*(unsigned int *)dst = color;
-	}
+	dst = i->addr + (y * i->ll + x * (i->bpp / 8));
+	*(unsigned int *)dst = color;
 }
 
 int	compute_delta(t_fdf *a)

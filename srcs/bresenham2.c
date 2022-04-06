@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 18:00:15 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/04/04 20:02:18 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:04:01 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	line_q1(t_fdf *a, t_2d p1, t_2d p2)
 	i = 0;
 	while (i <= dx)
 	{
-		if (0 <= p1.x + i && p1.x + i < WIN_WIDTH && 0 <= p1.y && p1.y < WIN_HEIGHT)
+		if (0 <= p1.x + i && p1.x + i < WIN_WIDTH
+			&& 0 <= p1.y && p1.y < WIN_HEIGHT)
 			put_pixel_to_img(&a->i, p1.x + i, p1.y,
 				get_color(p1.color, p2.color, (double)i / dx));
 		i++;
@@ -52,7 +53,8 @@ void	line_q2(t_fdf *a, t_2d p1, t_2d p2)
 	i = 0;
 	while (i <= dy)
 	{
-		if (0 <= p1.x && p1.x < WIN_WIDTH && 0 <= p1.y + i && p1.y + i < WIN_HEIGHT)
+		if (0 <= p1.x && p1.x < WIN_WIDTH
+			&& 0 <= p1.y + i && p1.y + i < WIN_HEIGHT)
 			put_pixel_to_img(&a->i, p1.x, p1.y + i,
 				get_color(p1.color, p2.color, (double)i / dy));
 		i++;
@@ -79,7 +81,8 @@ void	line_q3(t_fdf *a, t_2d p1, t_2d p2)
 	i = 0;
 	while (i <= dy)
 	{
-		if (0 <= p1.x && p1.x < WIN_WIDTH && 0 <= p1.y + i && p1.y + i < WIN_HEIGHT)
+		if (0 <= p1.x && p1.x < WIN_WIDTH
+			&& 0 <= p1.y + i && p1.y + i < WIN_HEIGHT)
 			put_pixel_to_img(&a->i, p1.x, p1.y + i,
 				get_color(p1.color, p2.color, (double)i / dy));
 		i++;
@@ -106,7 +109,8 @@ void	line_q4(t_fdf *a, t_2d p1, t_2d p2)
 	i = 0;
 	while (i <= dx)
 	{
-		if (0 <= p1.x - i && p1.x - i < WIN_WIDTH && 0 <= p1.y && p1.y < WIN_HEIGHT)
+		if (0 <= p1.x - i && p1.x - i < WIN_WIDTH
+			&& 0 <= p1.y && p1.y < WIN_HEIGHT)
 			put_pixel_to_img(&a->i, p1.x - i, p1.y,
 				get_color(p1.color, p2.color, (double)i / dx));
 		i++;
