@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:40:34 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/04/04 18:09:20 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/04/08 18:01:25 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 		ft_printf("Error\n");
 		return (1);
 	}
-	parser(argv[1], &a.map);
+	parser(argv[1], &a.map, &a);
 	a.mlx = mlx_init();
 	a.win = mlx_new_window(a.mlx, WIN_WIDTH, WIN_HEIGHT, "FdF");
 	a.i.img = mlx_new_image(a.mlx, WIN_WIDTH, WIN_HEIGHT);

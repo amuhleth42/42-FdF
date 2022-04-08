@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:34:12 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/04/08 17:35:59 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/04/08 18:01:52 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	fill_3d_map(t_list *lines, t_map *map)
 	}
 }
 
-void	parser(char *path, t_map *map)
+void	parser(char *path, t_map *map, t_fdf *a)
 {
 	t_list	*lines;
 
@@ -107,6 +107,11 @@ void	parser(char *path, t_map *map)
 	map->world = ft_calloc(map->size + 1, sizeof(t_3d));
 	map->render = ft_calloc(map->size + 1, sizeof(t_3dv));
 	map->map_2d = ft_calloc(map->size + 1, sizeof(t_2d));
+	if (!map->world || !map->render || !map->map_2d)
+	{
+		free_maps(a);
+		die("malloc error");
+	}
 	fill_3d_map(lines, map);
 	color_map(map);
 }
