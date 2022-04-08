@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:27:44 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/04/08 18:03:54 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/04/08 18:25:37 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ enum
 	ON_KEYDOWN = 2,
 	ON_MOUSEDOWN = 4,
 	ON_MOUSEUP = 5,
-	ON_MOUSEMOVE = 6
+	ON_MOUSEMOVE = 6,
+	ON_DESTROY = 17
 };
 
 typedef struct s_2d
@@ -135,6 +136,7 @@ void	draw_map(t_fdf *a, t_2d *map);
 void	clear_img(t_img *i);
 void	exit_all(t_fdf *a);
 void	free_maps(t_fdf *a);
+int		red_cross(t_fdf *a);
 
 void	render(t_fdf *a);
 
