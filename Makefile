@@ -11,7 +11,6 @@ SRCS		= $(addprefix srcs/,	\
 			  bresenham.c			\
 			  bresenham2.c			\
 			  draw.c				\
-			  image.c				\
 			  keyboard.c			\
 			  mouse.c				\
 			  view_matrix.c			\

@@ -6,11 +6,16 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:37:30 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/04/06 17:04:31 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/04/08 18:55:39 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	clear_img(t_img *i)
+{
+	ft_bzero(i->addr, WIN_WIDTH * WIN_HEIGHT * i->bpp / 8);
+}
 
 void	put_pixel_to_img(t_img *i, int x, int y, int color)
 {
