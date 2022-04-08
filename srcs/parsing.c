@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:34:12 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/04/04 19:22:30 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/04/08 17:35:59 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list	*read_file(char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		die("open failed.");
+		die("open : an error occured when opening file.");
 	line = ft_strtrim(get_next_line(fd), "\n");
 	if (!line)
 		return (NULL);
@@ -98,6 +98,8 @@ void	parser(char *path, t_map *map)
 	t_list	*lines;
 
 	lines = read_file(path);
+	if (!lines)
+		die("parsing : empty file");
 	map->x = count_elem_in_line(lines->content);
 	map->y = ft_lstsize(lines);
 	ft_printf("Y : %d\nX : %d\n", map->y, map->x);
