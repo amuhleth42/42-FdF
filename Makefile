@@ -7,7 +7,6 @@ LIB			= -L./libft -lft -L./mlx -lmlx -framework OpenGL -framework AppKit
 SRCS		= $(addprefix srcs/,	\
 			  main.c				\
 			  render.c				\
-			  utils.c				\
 			  bresenham.c			\
 			  bresenham2.c			\
 			  draw.c				\

@@ -1,12 +1,12 @@
-
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 19:27:44 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/04/08 18:25:37 by amuhleth         ###   ########.fr       */
+/*   Created: 2022/04/12 15:57:16 by amuhleth          #+#    #+#             */
+/*   Updated: 2022/04/12 16:02:40 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,13 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 
-# define COLOR1 0xFF2C3C
-# define COLOR2 0xB166E1
+# define C1 0xFF2C3C
+# define C2 0xB166E1
+# define C3 0x009DDC
+# define C4 0x07F3C4
+# define C5 0xFDAE11
+# define C6 0xFDFF66
+
 # define LEFT 1
 # define RIGHT 2
 # define SCROLL_UP 4
@@ -115,7 +120,6 @@ typedef struct s_fdf
 void	parser(char *path, t_map *map, t_fdf *a);
 
 void	die(char *s);
-void	switch_bool(int *b);
 
 void	bresenham(t_fdf *a, t_2d p1, t_2d p2);
 
@@ -144,9 +148,10 @@ void	world_to_view(t_fdf *a);
 t_3dv	normalize(t_3dv v);
 void	print_matrix(t_cam *cam);
 
-int		set_point_color(t_map *map, int z);
-void	color_map(t_map *map);
+int		set_point_color(t_map *map, int z, int c1, int c2);
+void	color_map(t_map *map, int c1, int c2);
 int		get_color(int c1, int c2, float shade);
+void	change_color_set(t_fdf *a);
 
 void	rotate_around_z(t_fdf *a, int x);
 void	rotate_around_y(t_fdf *a, int x);

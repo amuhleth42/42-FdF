@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:40:34 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/04/08 18:54:48 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:09:31 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,7 @@ int	main(int argc, char **argv)
 
 	(void) argv;
 	if (argc != 2)
-	{
-		ft_printf("Error\n");
-		return (1);
-	}
+		die("error : please enter a map as an argument");
 	ft_bzero(&a, sizeof(a));
 	parser(argv[1], &a.map, &a);
 	a.mlx = mlx_init();

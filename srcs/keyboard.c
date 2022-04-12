@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:30:51 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/03/31 17:15:28 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:02:22 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	key_hook(int key, t_fdf *a)
 			a->cam.pinhole = 0;
 		}
 	}
+	if (key == 8)
+		change_color_set(a);
 	render(a);
 	return (0);
 }
@@ -40,7 +42,12 @@ int	key_down(int key, t_fdf *a)
 	if (key == 126)
 		a->cam.altitude *= 1.0 + 0.1;
 	if (key == 49)
-		switch_bool(&a->cam.rot_z);
+	{
+		if (a->cam.rot_z == 0)
+			a->cam.rot_z = 1;
+		else
+			a->cam.rot_z = 0;
+	}
 	render(a);
 	return (0);
 }

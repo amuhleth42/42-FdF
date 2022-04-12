@@ -6,7 +6,7 @@
 /*   By: amuhleth <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:34:12 by amuhleth          #+#    #+#             */
-/*   Updated: 2022/04/08 18:01:52 by amuhleth         ###   ########.fr       */
+/*   Updated: 2022/04/12 15:48:36 by amuhleth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,5 @@ void	parser(char *path, t_map *map, t_fdf *a)
 		die("malloc error");
 	}
 	fill_3d_map(lines, map);
-	color_map(map);
+	color_map(map, C3, C4);
 }
