@@ -25,7 +25,7 @@ OBJS	= $(SRCS:%.c=$(OBJS_DIR)/%.o)
 all :		$(NAME)
 
 $(OBJS_DIR)/%.o :	$(SRCS_DIR)/%.c
-	gcc $(CFLAGS) $(INCL) -c $< -o $@
+	gcc $(FLAGS) $(INCL) -c $< -o $@
 
 $(NAME) :	libft.a libmlx.a $(OBJS)
 	gcc $(FLAGS) $(INCL) $(LIB) $(OBJS) -o $(NAME)
