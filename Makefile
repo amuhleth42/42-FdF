@@ -4,25 +4,31 @@ FLAGS		= -Wall -Wextra -Werror -Ofast
 INCL		= -I. -I./mlx -I./libft
 LIB			= -L./libft -lft -L./mlx -lmlx -framework OpenGL -framework AppKit
 
-SRCS		= $(addprefix srcs/,	\
-			  main.c				\
-			  render.c				\
-			  bresenham.c			\
-			  bresenham2.c			\
-			  draw.c				\
-			  keyboard.c			\
-			  mouse.c				\
-			  view_matrix.c			\
-			  color.c				\
-			  rotation.c			\
-			  exit.c				\
-			  parsing.c)
+SRCS_DIR	= srcs
+OBJS_DIR	= $(shell mkdir -p objs && printf "objs")
 
+SRCS		=	main.c				\
+				render.c			\
+			  	bresenham.c			\
+				bresenham2.c		\
+				draw.c				\
+				keyboard.c			\
+				mouse.c				\
+				view_matrix.c		\
+				color.c				\
+				rotation.c			\
+				exit.c				\
+				parsing.c
+
+OBJS	= $(SRCS:%.c=$(OBJS_DIR)/%.o)
 
 all :		$(NAME)
 
-$(NAME) :	libft.a libmlx.a
-	gcc $(FLAGS) $(INCL) $(LIB) $(SRCS) -o $(NAME)
+$(OBJS_DIR)/%.o :	$(SRCS_DIR)/%.c
+	gcc $(CFLAGS) $(INCL) -c $< -o $@
+
+$(NAME) :	libft.a libmlx.a $(OBJS)
+	gcc $(FLAGS) $(INCL) $(LIB) $(OBJS) -o $(NAME)
 
 libft.a :
 	make -C ./libft
@@ -33,6 +39,7 @@ libmlx.a :
 clean :
 	make fclean -C ./libft
 	make clean -C ./mlx
+	rm -rf $(OBJS_DIR)
 	rm $(NAME)
 
 fclean :	clean
